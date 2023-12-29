@@ -1,0 +1,31 @@
+/**
+Step 1 :
+Link this file to your html file.
+*/
+/**
+Step 2:
+Import the font family from Google Fonts: "You'll find the font name in the styling guid file".
+*/
+/**
+Step 3 :
+CSS reset
+*/
+/**
+Step 4 :
+Define variables inside :root pseudo-class  
+exp:
+ :root {
+   --varible-name: #fffff;
+}
+*/
+/**
+Step 5 :
+set general properties of the page inside "body" : background-color,color,font-family,line-height,padding 
+*/
+/**
+Step 6 :
+start by the layout of the page.
+*/
+/**
+finish by adding  background-color,color,font-size and padding of different componants of the page
+**/
