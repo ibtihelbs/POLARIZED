@@ -16,8 +16,8 @@ const Products = ({ sort, filter, categ }) => {
       try {
         const res = await axios.get(
           categ
-            ? `http://localhost:5000/api/products?categories=${categ}`
-            : "http://localhost:5000/api/products"
+            ? `https://polarized-store-api.onrender.com/api/products?categories=${categ}`
+            : "https://polarized-store-api.onrender.com/api/products"
         );
         console.log(res.data, categ);
         setProducts(res.data);
