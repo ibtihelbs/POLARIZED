@@ -1,14 +1,14 @@
-# POLARIZED
+# Polarized E-Commerce Platform
 
-[Short project description]
+Welcome to Polarized, where fashion meets mood! Polarized is an innovative e-commerce platform that offers a diverse range of unique clothing, accessories, and home goods. Our curated collection is designed to match your mood swings, whether you're feeling funny, brutal, classic, or discreet.
 
 ## Overview
 
-Initiated and led the development of a comprehensive e-commerce platform from the ground up, encompassing web design, copy creation, branding, and a full-stack admin dashboard.
+Initiated and led the development of Polarized, a comprehensive e-commerce platform from the ground up. The platform encompasses web design, copy creation, branding, and a full-stack admin dashboard.
 
 ## Project Duration
 
-july 2023 - Present
+[Start Date] - Present
 
 ## Role and Responsibilities
 
@@ -24,7 +24,7 @@ july 2023 - Present
 
 ## Achievements
 
-- Successfully launched the platform, achieving [Specify any notable achievements or milestones].
+- Successfully launched Polarized, achieving [Specify any notable achievements or milestones].
 - Established a strong brand identity, contributing to increased user engagement and recognition.
 - Streamlined administrative processes through the implementation of a comprehensive admin dashboard.
 
@@ -46,6 +46,6 @@ july 2023 - Present
 
 ## Screenshot
 
-![Project Screenshot](/screen.jpg)
+![Project Screenshot](./public/screen.jpg)
 
 [Link to Live Demo](https://polarized-store.onrender.com)
