@@ -21,11 +21,6 @@ july 2023 - Present
   - Adding additional features to the website and admin dashboard, including enhancing the Cart and Checkout pages.
 
 
-## Achievements
-
-- Successfully launched Polarized, achieving [Specify any notable achievements or milestones].
-- Established a strong brand identity, contributing to increased user engagement and recognition.
-- Streamlined administrative processes through the implementation of a comprehensive admin dashboard.
 
 ## Upcoming Enhancements
 
