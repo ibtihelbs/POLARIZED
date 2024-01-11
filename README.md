@@ -36,7 +36,7 @@ july 2023 - Present
 - React.js
 - Node.js
 - Styled Components
-- [Any other relevant technologies/tools]
+
 
 ## Screenshot
 
