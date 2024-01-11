@@ -8,7 +8,7 @@ Initiated and led the development of Polarized, a comprehensive e-commerce platf
 
 ## Project Duration
 
-[Start Date] - Present
+july 2023 - Present
 
 ## Role and Responsibilities
 
