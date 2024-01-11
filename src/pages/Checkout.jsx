@@ -3,6 +3,7 @@ import { order } from "../redux/apiCall";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { addOrder } from "../redux/order";
+import { validProduct } from "../redux/cart";
 const Checkout = () => {
   const user = useSelector((state) => state.user);
   const prod = useSelector((state) => state.cart);
@@ -31,6 +32,7 @@ const Checkout = () => {
 
     order(dispatch, orderRedux);
     dispatch(addOrder(orderRedux));
+    dispatch(validProduct());
     setOrdered(true);
   };
   return (

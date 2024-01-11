@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import Footer from "../components/Footer";
-import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-//import axios from "axios";
+
 import { useState } from "react";
 import { PUBLIC_REQUEST } from "../request";
 import { addProduct } from "../redux/cart";
@@ -142,17 +140,15 @@ const Product = () => {
   useEffect(() => {
     const getProduct = async () => {
       const item = await PUBLIC_REQUEST.get(`/products/find/${Id}`);
-      console.log(item);
       setProd(item.data);
     };
     getProduct();
   }, [Id]);
-  console.log(prod);
   const submitCart = () => {
+    console.log({ ...prod, quantity });
     dispatcher(addProduct({ ...prod, quantity }));
     setQuantity(1);
   };
-  console.log(prod);
   return (
     <Container>
       <Wrapper>
@@ -201,8 +197,6 @@ const Product = () => {
           </AddContainer>
         </InfoContainer>
       </Wrapper>
-      <Newsletter />
-      <Footer />
     </Container>
   );
 };

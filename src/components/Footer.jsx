@@ -15,7 +15,8 @@ const Container = styled.div`
   display: flex;
   background-color: #0a1174;
   color: white;
-  ${mobile({ flexDirection: "column", backgroundColor: "red" })};
+
+  ${mobile({ flexDirection: "column" })};
 `;
 const Left = styled.div`
   flex: 1;

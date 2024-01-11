@@ -8,12 +8,18 @@ import { Link } from "react-router-dom";
 // Styled components
 const CardContainer = styled.div`
   position: relative;
-  width: 30%;
+  flex: 1 1 300px;
   border: solid #1d4ed8 3px;
   box-shadow: 5px 5px 0px #1d4ed8;
   border-radius: 30px;
   overflow: hidden;
   margin: 16px;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  &:hover {
+    transform: translate(5px, 5px);
+    box-shadow: 0px 0px 0px #1d4ed8;
+    color: #1d4ed8;
+  }
 `;
 
 const Image = styled.img`
@@ -23,34 +29,20 @@ const Image = styled.img`
   border-radius: 30px;
   object-fit: cover;
 
-  // Overlay styles
-  position: relative;
+  tansition: transform 0.9 ease-out, opacity 0.9 ease-out;
 
   &:hover {
     cursor: pointer;
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 133, 0.5);
-      z-index: 1;
-    }
+    transform: scale(1.2);
+    opacity: 0.5;
   }
 `;
 
-const OverlayLink = styled(Link)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-
-  text-decoration: none;
-  font-size: 1.5em;
-  display: none;
+const Linked = styled(Link)`
+  tansition: text-decoration 0.3 ease-out;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const Content = styled.div`
@@ -78,7 +70,21 @@ const StarIcon = styled.span`
   color: #f39c12;
   margin-right: 4px;
 `;
-
+const Button = styled.button`
+  border-radius: 15px;
+  border: 3px solid #1d4ed8;
+  box-shadow: 5px 5px 0px #1d4ed8;
+  padding: 0.5rem 1rem;
+  background-color: red;
+  color: wheat;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  &:hover {
+    background-color: pink;
+    transform: translate(5px, 5px);
+    box-shadow: 0px 0px 0px #1d4ed8;
+    color: #1d4ed8;
+  }
+`;
 const generateStars = (rating) => {
   const stars = [];
   for (let i = 0; i < 5; i++) {
@@ -91,17 +97,20 @@ const generateStars = (rating) => {
 
 // ProductCard component
 const ProductCard = ({ product }) => {
-  const { title, price, img, rating, _id } = product;
-  console.log(product);
+  const { title, price, img, rating, _id, categories } = product;
   return (
     <CardContainer>
-      <Link to={`Product/${_id}`}>
+      <Link to={`../Product/${_id}`}>
         <Image src={img} alt={title} />
       </Link>
-      <OverlayLink to={`Product/${_id}`}>View Details</OverlayLink>
       <Content>
         <Title>{title}</Title>
-
+        tags:{" "}
+        {categories.map((v, i) => (
+          <Linked key={i} to={`../productlist/${v}`}>
+            {v},{" "}
+          </Linked>
+        ))}
         <div
           style={{
             display: "flex",
@@ -111,6 +120,16 @@ const ProductCard = ({ product }) => {
         >
           <Price>${price}</Price>
           <RatingContainer>{generateStars(rating || 4)}</RatingContainer>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Linked to={`../Product/${_id}`}>Details</Linked>
+          <Button>add to cart</Button>
         </div>
       </Content>
     </CardContainer>

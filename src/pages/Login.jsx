@@ -6,15 +6,11 @@ import { loginApi } from "../redux/apiCall";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import transition from "../transition";
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
-      center;
+
   background-size: cover;
   display: flex;
   align-items: center;
@@ -23,9 +19,11 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 25%;
+  box-shadow: 5px 5px 0px #1d4ed8;
+  border-radius: 15px;
+  border: 3px solid #1d4ed8;
   padding: 20px;
-  background-color: white;
-  ${mobile({ width: "75%" })}
+  ${mobile({ width: "75%" })};
 `;
 
 const Title = styled.h1`
@@ -49,9 +47,15 @@ const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  background-color: teal;
-  color: white;
+  box-shadow: 5px 5px 0px #1d4ed8;
+  border-radius: 15px;
+  border: 3px solid #1d4ed8;
   cursor: pointer;
+  margin-bottom: 10px;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
   margin-bottom: 10px;
 `;
 
@@ -61,12 +65,13 @@ const Login = () => {
   const dispatcher = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
 
-  const hundleLogin = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     console.log("first");
     loginApi(dispatcher, { username, password });
     console.log(isFetching, error);
   };
+
   return (
     <Container>
       <Wrapper>
@@ -81,13 +86,15 @@ const Login = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={hundleLogin}>LOGIN</Button>
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link to={"/register"}>CREATE A NEW ACCOUNT</Link>
+          <Button onClick={handleLogin}>LOGIN</Button>
+          <StyledLink>DO NOT YOU REMEMBER THE PASSWORD?</StyledLink>
+          <StyledLink to={"/register"}>CREATE A NEW ACCOUNT</StyledLink>
         </Form>
       </Wrapper>
     </Container>
   );
 };
+
 const LoginCom = transition(Login);
+
 export default LoginCom;

@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import Products from "../components/Products";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-
+import transition from "../transition";
 const Container = styled.div``;
 
 const Title = styled.h1`
@@ -51,7 +49,7 @@ const ProductList = () => {
   };
   return (
     <Container>
-      <Title>Dresses</Title>
+      {categ ? <Title>{categ}</Title> : ""}
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
@@ -93,4 +91,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default transition(ProductList);

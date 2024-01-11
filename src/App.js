@@ -11,6 +11,8 @@ import Checkout from "./pages/Checkout";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { AnimatePresence } from "framer-motion";
+import Account from "./pages/Account";
+import ProductFetching from "./productFetching";
 
 function App() {
   const location = useLocation();
@@ -18,8 +20,8 @@ function App() {
   return (
     <div className="App">
       <div className="noise"></div>
-
-      <Navbar />
+      {/**<Preloader /> */}
+      <Navbar user={User} />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route exact path="/" element={<Home />} />
@@ -32,7 +34,10 @@ function App() {
           <Route exact path="Product/:id" element={<Product />} />
           <Route exact path="Cart" element={<Cart />} />
           <Route exact path="ProductList/:category" element={<ProductList />} />
+          <Route exact path="ProductList" element={<ProductList />} />
           <Route exact path="checkout" element={<Checkout />} />
+          <Route exact path="account" element={<Account />} />
+          <Route exact path="mount" element={<ProductFetching />} />
         </Routes>
       </AnimatePresence>
       <Footer />

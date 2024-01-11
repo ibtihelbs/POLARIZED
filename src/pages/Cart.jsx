@@ -1,18 +1,29 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import transition from "../transition";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import {
+  addProduct,
+  deleteProduct,
+  updateQuantity,
+  validProduct,
+} from "../redux/cart";
+import { MdDelete } from "react-icons/md";
+import { useState } from "react";
+
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 20px;
   ${mobile({ padding: "10px" })}
 `;
+
 const Title = styled.h1`
   font-weight: 300;
   text-align: center;
+  margin-bottom: 20px;
 `;
 
 const Top = styled.div`
@@ -20,16 +31,23 @@ const Top = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+  border-bottom: 1px solid #ccc;
 `;
 
 const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
-  background-color: ${(props) =>
-    props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 5px 5px 0px #1d4ed8;
+  border-radius: 15px;
+  border: 3px solid #1d4ed8;
+
+  &:hover {
+    background-color: ${(props) =>
+      props.type === "filled" ? "transparent" : "#1d4ed8"};
+    color: ${(props) => (props.type === "filled" ? "black" : "white")};
+  }
 `;
 
 const TopTexts = styled.div`
@@ -55,28 +73,36 @@ const Info = styled.div`
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
+  margin-bottom: 20px;
 `;
 
 const ProductDetail = styled.div`
   flex: 2;
   display: flex;
+  gap: 1rem;
 `;
 
 const Image = styled.img`
-  width: 200px;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
 `;
 
 const Details = styled.div`
-  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 `;
 
-const ProductName = styled.span``;
+const ProductName = styled.span`
+  font-weight: 500;
+`;
 
-const ProductId = styled.span``;
+const ProductId = styled.span`
+  color: #777;
+`;
 
 const ProductColor = styled.div`
   width: 20px;
@@ -85,7 +111,9 @@ const ProductColor = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-const ProductSize = styled.span``;
+const ProductSize = styled.span`
+  color: #777;
+`;
 
 const PriceDetail = styled.div`
   flex: 1;
@@ -99,24 +127,39 @@ const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  width: 100%;
+  justify-content: space-around;
+`;
+
+const AmountButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  outline: none;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: #1d4ed8;
+  }
 `;
 
 const ProductAmount = styled.div`
   font-size: 24px;
-  margin: 5px;
-  ${mobile({ margin: "5px 15px" })}
+  margin: 0 15px;
+  ${mobile({ fontSize: "12px" })}
 `;
 
 const ProductPrice = styled.div`
-  font-size: 30px;
-  font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
+  font-size: 18px;
+  font-weight: 500;
 `;
 
 const Hr = styled.hr`
   background-color: #eee;
   border: none;
   height: 1px;
+  margin: 20px 0;
 `;
 
 const Summary = styled.div`
@@ -127,109 +170,145 @@ const Summary = styled.div`
   height: 50vh;
 `;
 
-const SummaryTitle = styled.h1`
-  font-weight: 200;
+const SummaryTitle = styled.h2`
+  font-weight: 500;
+  margin-bottom: 20px;
 `;
 
 const SummaryItem = styled.div`
-  margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-  font-weight: ${(props) => props.type === "total" && "500"};
-  font-size: ${(props) => props.type === "total" && "24px"};
+  font-weight: ${(props) => props.type === "total" && "600"};
+  font-size: ${(props) => props.type === "total" && "20px"};
+  margin-bottom: 10px;
 `;
 
 const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
 
-const Button = styled.button`
+const CheckoutButton = styled.button`
   width: 100%;
   padding: 10px;
-  background-color: black;
-  color: white;
   font-weight: 600;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 5px 5px 0px #1d4ed8;
+  border-radius: 15px;
+  border: 3px solid #1d4ed8;
+  &:hover {
+    background-color: #1d4ed8;
+  }
 `;
 
 const Cart = () => {
   const prod = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
-  //console.log(prod, user.currentUser);
+  console.log(prod);
   const currentUser = user.currentUser;
-
+  const dispatch = useDispatch();
+  const remove = (v) => {
+    dispatch(deleteProduct(v));
+  };
+  const update = (v, newQuantity) => {
+    console.log("first", newQuantity);
+    dispatch(updateQuantity({ ...v, newQuantity }));
+  };
   return (
     <Container>
       <Wrapper>
-        <Title>YOUR BAG</Title>
-        <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
-          <TopTexts>
-            <TopText>Shopping Bag({prod.products.length})</TopText>
-            <TopText>Your Wishlist (0)</TopText>
-          </TopTexts>
-          <Link to={currentUser ? "/checkout" : "/Login"}>CHECKOUT NOW</Link>
-        </Top>
-        <Bottom>
-          <Info>
-            {prod.products.map((v, i) => (
-              <Product key={i}>
-                <ProductDetail>
-                  <Image src={v.img} />
-                  <Details>
-                    <ProductName>
-                      <b>Product:</b> {v.title}
-                    </ProductName>
-                    <ProductId>
-                      <b>ID:</b> {v._id}
-                    </ProductId>
-                    <ProductColor color="gray" />
-                    <ProductSize>
-                      <b>Size:</b>
-                    </ProductSize>
-                  </Details>
-                </ProductDetail>
-                <PriceDetail>
-                  <ProductAmountContainer>
-                    <button>
-                      <FaMinus />
-                    </button>
-                    <ProductAmount>1</ProductAmount>
-                    <button>
-                      <FaPlus />
-                    </button>
-                  </ProductAmountContainer>
-                  <ProductPrice>{v.price} $</ProductPrice>
-                </PriceDetail>
-              </Product>
-            ))}
-            <Hr />
-          </Info>
-          <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-            <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {Math.round(prod.total)}</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem type="total">
-              <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {Math.round(prod.total)}</SummaryItemPrice>
-            </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
-            <button>new bitch</button>
-            {/**() => {
-                currentUser ? console.log("first") : console.log("second");
-                return redirect("/login");
-              } */}
-          </Summary>
-        </Bottom>
+        {prod.products.length !== 0 ? (
+          <>
+            <Title>Your Bag</Title>
+            <Top>
+              <TopButton>
+                <Link to={"/ProductList"}>Continue Shopping</Link>
+              </TopButton>
+              <TopTexts>
+                <TopText>Shopping Bag ({prod.products.length})</TopText>
+                <TopText>Your Wishlist (0)</TopText>
+              </TopTexts>
+              <Link to={currentUser ? "/checkout" : "/login"}>
+                <TopButton type="filled">Checkout Now</TopButton>
+              </Link>
+            </Top>
+            <Bottom>
+              <Info>
+                {prod.products.map((v, i) => (
+                  <Product key={i}>
+                    <ProductDetail>
+                      <Details>
+                        <Image src={v.img} alt={v.title} />
+                        <ProductAmountContainer>
+                          <AmountButton>
+                            <FaMinus
+                              onClick={() => {
+                                if (v.quantity == 1) return;
+
+                                let newQuantity = v.quantity - 1;
+                                update(v, newQuantity);
+                              }}
+                            />
+                          </AmountButton>
+                          <ProductAmount>{v.quantity}</ProductAmount>
+                          <AmountButton>
+                            <FaPlus
+                              onClick={() => {
+                                let newQuantity = v.quantity + 1;
+                                update(v, newQuantity);
+                              }}
+                            />
+                          </AmountButton>
+                        </ProductAmountContainer>
+                      </Details>
+                      <Details>
+                        <ProductName>{v.title}</ProductName>
+                        <ProductId>ID: {v._id}</ProductId>
+                        <ProductColor color="gray" />
+                        <ProductSize>Size: {v.size} </ProductSize>
+                      </Details>
+                    </ProductDetail>
+                    <MdDelete
+                      onClick={() => {
+                        remove(v);
+                      }}
+                    />
+                    <PriceDetail>
+                      <ProductPrice>
+                        ${Math.round(v.price * v.quantity)}
+                      </ProductPrice>
+                    </PriceDetail>
+                  </Product>
+                ))}
+                <Hr />
+              </Info>
+              <Summary>
+                <SummaryTitle>Order Summary</SummaryTitle>
+                <SummaryItem>
+                  <SummaryItemText>Subtotal</SummaryItemText>
+                  <SummaryItemPrice>${Math.round(prod.total)}</SummaryItemPrice>
+                </SummaryItem>
+                <SummaryItem>
+                  <SummaryItemText>Estimated Shipping</SummaryItemText>
+                  <SummaryItemPrice>$5.90</SummaryItemPrice>
+                </SummaryItem>
+                <SummaryItem>
+                  <SummaryItemText>Shipping Discount</SummaryItemText>
+                  <SummaryItemPrice>-$5.90</SummaryItemPrice>
+                </SummaryItem>
+                <SummaryItem type="total">
+                  <SummaryItemText>Total</SummaryItemText>
+                  <SummaryItemPrice>${Math.round(prod.total)}</SummaryItemPrice>
+                </SummaryItem>
+                <CheckoutButton>Checkout Now</CheckoutButton>
+              </Summary>
+            </Bottom>
+          </>
+        ) : (
+          <Title>Your cart is empty</Title>
+        )}
       </Wrapper>
     </Container>
   );

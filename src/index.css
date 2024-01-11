@@ -16,6 +16,10 @@ img {
 ul {
   list-style: none;
 }
+input::placeholder {
+  color: #1d4ed8;
+  padding-left: 5px;
+}
 a {
   text-decoration: none;
 }
@@ -86,8 +90,8 @@ button:hover {
   gap: 10px;
   border-radius: 15px;
   border: 3px solid #1d4ed8;
-  padding: 0.5rem;
   box-shadow: 5px 5px 0px #1d4ed8;
+  padding: 0.5rem;
 }
 .item img {
   width: 100px;
@@ -152,4 +156,17 @@ button:disabled {
   height: 100%;
   background: #1d4ed8;
   transform-origin: top;
+}
+@media (max-width: 500px) {
+  body {
+    font-size: 12px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+
+  span,
+  p {
+    font-size: 0.7rem;
+  }
 }

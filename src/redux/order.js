@@ -19,6 +19,7 @@ const orderSlice = createSlice({
       state.productOrder.push(action.payload);
       state.userId = action.payload.userId;
     },
+
     addOrderFailure: (state, action) => {
       state.isFetching = false;
       state.error = true;
