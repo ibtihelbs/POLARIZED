@@ -19,8 +19,7 @@ july 2023 - Present
   - Performance optimization
   - Incorporating on-scroll animations
   - Adding additional features to the website and admin dashboard, including enhancing the Cart and Checkout pages.
-- Collaborated with cross-functional teams to ensure seamless integration of design elements and functionality.
-- Conducted rigorous testing and debugging for optimal performance and security.
+
 
 ## Achievements
 
