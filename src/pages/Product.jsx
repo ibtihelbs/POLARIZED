@@ -145,7 +145,6 @@ const Product = () => {
     getProduct();
   }, [Id]);
   const submitCart = () => {
-    console.log({ ...prod, quantity });
     dispatcher(addProduct({ ...prod, quantity }));
     setQuantity(1);
   };

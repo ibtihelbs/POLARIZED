@@ -291,6 +291,12 @@ const Cart = () => {
                   <SummaryItemPrice>${Math.round(prod.total)}</SummaryItemPrice>
                 </SummaryItem>
                 <SummaryItem>
+                  <SummaryItemText>quantity</SummaryItemText>
+                  <SummaryItemPrice>
+                    ${Math.round(prod.quantity)}
+                  </SummaryItemPrice>
+                </SummaryItem>
+                <SummaryItem>
                   <SummaryItemText>Estimated Shipping</SummaryItemText>
                   <SummaryItemPrice>$5.90</SummaryItemPrice>
                 </SummaryItem>

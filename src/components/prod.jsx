@@ -1,8 +1,8 @@
 // ProductCard.js
 import React from "react";
 import styled from "styled-components";
-import { FaRegHeart } from "react-icons/fa6";
-import { FaSearch } from "react-icons/fa";
+import { addProduct } from "../redux/cart";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 // Styled components
@@ -98,6 +98,7 @@ const generateStars = (rating) => {
 // ProductCard component
 const ProductCard = ({ product }) => {
   const { title, price, img, rating, _id, categories } = product;
+  const dispatch = useDispatch();
   return (
     <CardContainer>
       <Link to={`../Product/${_id}`}>
@@ -129,7 +130,13 @@ const ProductCard = ({ product }) => {
           }}
         >
           <Linked to={`../Product/${_id}`}>Details</Linked>
-          <Button>add to cart</Button>
+          <Button
+            onClick={() => {
+              dispatch(addProduct({ ...product, quantity: 1 }));
+            }}
+          >
+            add to cart
+          </Button>
         </div>
       </Content>
     </CardContainer>

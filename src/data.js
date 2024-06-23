@@ -6,13 +6,7 @@ export const sliderItems = [
     desc: "No Rules. No Compromises. Just Unapologetic Style.",
     bg: "f5fafd",
   },
-  {
-    id: 2,
-    img: "./slide2.png",
-    title: "AUTUMN COLLECTION",
-    desc: " Embrace the Brutal Elegance of Handcrafted Rebellion.",
-    bg: "fcf1ed",
-  },
+
   {
     id: 3,
     img: "./slide3.png",
