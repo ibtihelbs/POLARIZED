@@ -4,14 +4,8 @@ import transition from "../transition";
 import { useDispatch, useSelector } from "react-redux";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import {
-  addProduct,
-  deleteProduct,
-  updateQuantity,
-  validProduct,
-} from "../redux/cart";
+import { deleteProduct, updateQuantity } from "../redux/cart";
 import { MdDelete } from "react-icons/md";
-import { useState } from "react";
 
 const Container = styled.div``;
 
@@ -44,9 +38,8 @@ const TopButton = styled.button`
   border: 3px solid #1d4ed8;
 
   &:hover {
-    background-color: ${(props) =>
-      props.type === "filled" ? "transparent" : "#1d4ed8"};
-    color: ${(props) => (props.type === "filled" ? "black" : "white")};
+    background-color: #1d4ed8;
+    color: #f9ffb9;
   }
 `;
 
@@ -72,6 +65,10 @@ const Info = styled.div`
 
 const Product = styled.div`
   display: flex;
+  padding: 1rem;
+  border: blue solid 1px;
+  border-radius: 8px;
+
   justify-content: space-between;
   margin-bottom: 20px;
 `;
@@ -83,7 +80,7 @@ const ProductDetail = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
+  width: 100px;
   height: 100px;
   object-fit: cover;
   border-radius: 8px;
@@ -96,8 +93,9 @@ const Details = styled.div`
   justify-content: space-around;
 `;
 
-const ProductName = styled.span`
-  font-weight: 500;
+const ProductName = styled.h2`
+  font-weight: 600;
+  font-size: 24px;
 `;
 
 const ProductId = styled.span`
@@ -119,8 +117,8 @@ const PriceDetail = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: end;
+  justify-content: space-between;
 `;
 
 const ProductAmountContainer = styled.div`
@@ -153,6 +151,7 @@ const ProductAmount = styled.div`
 const ProductPrice = styled.div`
   font-size: 18px;
   font-weight: 500;
+  display: flex;
 `;
 
 const Hr = styled.hr`
@@ -245,7 +244,7 @@ const Cart = () => {
                           <AmountButton>
                             <FaMinus
                               onClick={() => {
-                                if (v.quantity == 1) return;
+                                if (v.quantity === 1) return;
 
                                 let newQuantity = v.quantity - 1;
                                 update(v, newQuantity);
@@ -267,18 +266,24 @@ const Cart = () => {
                         <ProductName>{v.title}</ProductName>
                         <ProductId>ID: {v._id}</ProductId>
                         <ProductColor color="gray" />
-                        <ProductSize>Size: {v.size} </ProductSize>
+                        <ProductSize>Size: {v.size || "Standard"} </ProductSize>
                       </Details>
                     </ProductDetail>
-                    <MdDelete
-                      onClick={() => {
-                        remove(v);
-                      }}
-                    />
+
                     <PriceDetail>
-                      <ProductPrice>
-                        ${Math.round(v.price * v.quantity)}
-                      </ProductPrice>
+                      <MdDelete
+                        onClick={() => {
+                          remove(v);
+                        }}
+                      />
+                      <div>
+                        <ProductPrice>
+                          <p>total price:</p>${Math.round(v.price * v.quantity)}
+                        </ProductPrice>
+                        <ProductPrice>
+                          price: ${Math.round(v.price)}
+                        </ProductPrice>
+                      </div>
                     </PriceDetail>
                   </Product>
                 ))}

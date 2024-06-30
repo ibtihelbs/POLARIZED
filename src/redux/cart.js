@@ -15,8 +15,13 @@ const cartSlice = createSlice({
       }
       if (isFound === -1) {
         state.products.push(action.payload);
-        state.quantity += Math.max(action.payload.quantity, 1);
-        state.total += action.payload.price * action.payload.quantity;
+        if (action.payload.quantity) {
+          state.quantity += action.payload.quantity;
+          state.total += action.payload.price * action.payload.quantity;
+        } else {
+          state.quantity += 1;
+          state.total += action.payload.price;
+        }
       } else {
         state.products[isFound].quantity += action.payload.quantity;
         state.quantity += action.payload.quantity;
