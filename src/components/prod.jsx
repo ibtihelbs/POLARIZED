@@ -47,7 +47,6 @@ const Linked = styled(Link)`
 
 const Content = styled.div`
   position: relative;
-  z-index: 2;
   padding: 16px;
 `;
 

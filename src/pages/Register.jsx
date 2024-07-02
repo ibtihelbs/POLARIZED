@@ -7,13 +7,7 @@ import { register } from "../redux/apiCall";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
-      center;
-  background-size: cover;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +16,9 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
-  background-color: white;
+  border: 3px solid rgb(29, 78, 216);
+  box-shadow: rgb(29, 78, 216) 5px 5px 0px;
+  border-radius: 30px;
   ${mobile({ width: "75%" })}
 `;
 const Title = styled.h1`
@@ -38,8 +34,12 @@ const Form = styled.form`
 const Input = styled.input`
   flex: 1;
   min-width: 40%;
+  border: 3px solid rgb(29, 78, 216);
+
   margin: 20px 10px 0px 0px;
   padding: 10px;
+  background-color: transparent;
+  border-radius: 999px;
 `;
 
 const Agreement = styled.span`
@@ -48,12 +48,21 @@ const Agreement = styled.span`
 `;
 
 const Button = styled.button`
-  width: 40%;
-  border: none;
-  padding: 15px 20px;
-  background-color: teal;
-  color: white;
+  padding: 10px;
+  font-weight: 600;
+  place-self: start;
+  padding: 1rem 4rem;
   cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 5px 5px 0px #1d4ed8;
+  border-radius: 15px;
+  border: 3px solid #1d4ed8;
+  &:hover {
+    background-color: #1d4ed8;
+    color: #f9ffb9;
+  }
 `;
 
 const Register = () => {

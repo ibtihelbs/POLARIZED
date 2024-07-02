@@ -72,7 +72,7 @@ const CategotyItem = ({ item }) => {
       }}
     >
       <Link to={`/ProductList/${item.categories}`}>
-        <Image src={item.img} alt={item.title} />
+        <Image src={item.img} alt={item.title} loading="lazy" />
         <Info>
           <Wrapper>
             <Wrap

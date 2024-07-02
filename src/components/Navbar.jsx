@@ -71,11 +71,6 @@ const Navbar = ({ user }) => {
   };
   const handleDropDown = () => {
     setDropDown(!dropDown);
-    setTimeout(() => {
-      setDropDown(false);
-      console.log(dropDown);
-    }, 1000);
-    console.log(dropDown);
   };
   return (
     <NavbarContainer>
@@ -118,10 +113,14 @@ const Navbar = ({ user }) => {
             </Li>
             <Menudropdown style={{ display: `${dropDown ? "block" : "none"}` }}>
               <Li>
-                <StyledLink to={"/Login"}>Login</StyledLink>
+                <StyledLink onClick={handleDropDown} to={"/Login"}>
+                  Login
+                </StyledLink>
               </Li>
               <Li>
-                <StyledLink to={"/Register"}>Register</StyledLink>
+                <StyledLink onClick={handleDropDown} to={"/Register"}>
+                  Register
+                </StyledLink>
               </Li>
             </Menudropdown>
           </>
