@@ -4,7 +4,7 @@ import { addOrder, addOrderFailure, addOrderStart } from "./order";
 import { PUBLIC_REQUEST, userRequest } from "../request";
 
 export const loginApi = async (dispatch, user) => {
-  dispatch(loginStart);
+  dispatch(loginStart());
   try {
     const res = await PUBLIC_REQUEST.post("user/auth/login", user);
 
@@ -15,7 +15,7 @@ export const loginApi = async (dispatch, user) => {
   }
 };
 export const register = async (dispatch, user) => {
-  dispatch(addUserStart);
+  dispatch(addUserStart());
   try {
     const res = await PUBLIC_REQUEST.post("user/auth/register", user);
 
@@ -27,12 +27,12 @@ export const register = async (dispatch, user) => {
 };
 
 export const order = async (dispatch, order) => {
-  dispatch(addOrderStart);
+  dispatch(addOrderStart());
   try {
     const res = userRequest.post("orders", order);
     console.log(order);
     dispatch(addOrder(res.data));
   } catch (error) {
-    dispatch(addOrderFailure);
+    dispatch(addOrderFailure());
   }
 };
