@@ -18,12 +18,12 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 25%;
+  width: 600px;
   box-shadow: 5px 5px 0px #1d4ed8;
   border-radius: 15px;
   border: 3px solid #1d4ed8;
   padding: 20px;
-  ${mobile({ width: "75%" })};
+  ${mobile({ width: "90%" })};
 `;
 
 const Title = styled.h1`
@@ -39,8 +39,11 @@ const Form = styled.form`
 const Input = styled.input`
   flex: 1;
   min-width: 40%;
-  margin: 10px 0;
+  border: 3px solid rgb(29, 78, 216);
+  margin: 20px 10px 0px 0px;
   padding: 10px;
+  background-color: transparent;
+  border-radius: 999px;
 `;
 
 const Button = styled.button`
