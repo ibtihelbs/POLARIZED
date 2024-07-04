@@ -61,6 +61,7 @@ const Products = ({ sort, filter, categ }) => {
         } else {
           setProducts(res.data.slice(0, itemsPerPage));
         }
+        console.log(res.data);
       } catch (error) {
         console.log(error);
       }

@@ -61,7 +61,6 @@ const Li = styled.li`
 `;
 const Navbar = ({ user }) => {
   const quantity = useSelector((state) => state.cart.quantity);
-  const tt = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const [searched, setSearched] = useState("");
   const [dropDown, setDropDown] = useState(false);

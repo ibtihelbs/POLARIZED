@@ -7,7 +7,6 @@ export const loginApi = async (dispatch, user) => {
   dispatch(loginStart());
   try {
     const res = await PUBLIC_REQUEST.post("user/auth/login", user);
-
     console.log(res);
     dispatch(loginSucess(res.data));
   } catch (error) {

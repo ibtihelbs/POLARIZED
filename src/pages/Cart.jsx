@@ -212,7 +212,6 @@ const Cart = () => {
     dispatch(deleteProduct(v));
   };
   const update = (v, newQuantity) => {
-    console.log("first", newQuantity);
     dispatch(updateQuantity({ ...v, newQuantity }));
   };
   return (

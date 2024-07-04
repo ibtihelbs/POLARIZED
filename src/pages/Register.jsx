@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 40%;
+  width: 60%;
   padding: 20px;
   border: 3px solid rgb(29, 78, 216);
   box-shadow: rgb(29, 78, 216) 5px 5px 0px;
@@ -25,16 +25,16 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
+  text-align: center;
 `;
 
 const Form = styled.form`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 `;
 
 const Input = styled.input`
-  flex: 1;
-  min-width: 40%;
+  width: 100%;
   border: 3px solid rgb(29, 78, 216);
   margin: 20px 10px 0px 0px;
   padding: 10px;
@@ -130,28 +130,32 @@ const Register = () => {
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form onSubmit={handleCreate}>
-          <Input onChange={handleChange} name="name" placeholder="Name" />
-          <Input
-            onChange={handleChange}
-            name="lastName"
-            placeholder="Last Name"
-          />
-          <Input
-            onChange={handleChange}
-            name="username"
-            placeholder="Username"
-          />
-          <Input onChange={handleChange} name="email" placeholder="Email" />
-          <Input
-            onChange={handleChange}
-            name="password"
-            placeholder="Password"
-          />
-          <Input
-            onChange={handleChange}
-            name="confirmPassword"
-            placeholder="Confirm Password"
-          />
+          <div>
+            <Input onChange={handleChange} name="name" placeholder="Name" />
+            <Input
+              onChange={handleChange}
+              name="lastName"
+              placeholder="Last Name"
+            />
+            <Input
+              onChange={handleChange}
+              name="username"
+              placeholder="Username"
+            />
+          </div>
+          <div>
+            <Input onChange={handleChange} name="email" placeholder="Email" />
+            <Input
+              onChange={handleChange}
+              name="password"
+              placeholder="Password"
+            />
+            <Input
+              onChange={handleChange}
+              name="confirmPassword"
+              placeholder="Confirm Password"
+            />
+          </div>
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>.

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -13,8 +13,11 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  align-items: center;
-  ${mobile({ padding: "10px", flexDirection: "column" })}
+  gap: 3rem;
+  ${tablet({
+    padding: "10px",
+    flexDirection: "column",
+  })}
 `;
 const ImgContainer = styled.div`
   flex: 1;
@@ -27,19 +30,18 @@ const Image = styled.img`
   border: #1d4ed8 3px solid;
   border-radius: 30px;
   box-shadow: 5px 5px 0px #1d4ed8;
-  ${mobile({ height: "40vh" })};
+  ${mobile({ height: "30vh" })};
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
-  padding: 0px 50px;
-  ${mobile({ padding: "10px" })}
 `;
 
 const Title = styled.h2`
   font-weight: 200;
   font-family: erica one;
   font-size: 3rem;
+
   line-height: 1;
 `;
 
@@ -87,7 +89,6 @@ const FilterSize = styled.select`
 const FilterSizeOption = styled.option``;
 
 const AddContainer = styled.div`
-  width: 50%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -117,13 +118,13 @@ const Amount = styled.span`
 
 const Button = styled.button`
   padding: 15px;
+  width: 200px;
   background-color: #1d4ed8;
   color: #f9ffb9;
   font-weight: 600;
   cursor: pointer;
   border-radius: 30px;
   border: 3px solid #1d4ed8;
-
   &:hover {
     background-color: #f9ffb9;
     color: #1d4ed8;
