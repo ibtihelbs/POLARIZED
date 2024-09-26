@@ -67,8 +67,8 @@ const CategotyItem = ({ item }) => {
       style={{
         transform: `rotate(${item.id % 2 === 0 ? "25deg" : "-25deg"})`,
         borderRadius: "30px",
-        border: "solid 3px #1d4ed8",
-        boxShadow: "5px 5px 0px #1d4ed8",
+        border: "solid 3px #2C3639",
+        boxShadow: "5px 5px 0px #2C3639",
       }}
     >
       <Link to={`/ProductList/${item.categories}`}>
@@ -76,7 +76,7 @@ const CategotyItem = ({ item }) => {
         <Info>
           <Wrapper>
             <Wrap
-              style={{ color: `${item.id % 2 === 0 ? "#f9ffb9" : "#1d4ed8"}` }}
+              style={{ color: `${item.id % 2 === 0 ? "#f9ffb9" : "#2C3639"}` }}
             >
               <Title>{item.title}</Title>
               <Title>{item.title}</Title>
@@ -85,7 +85,7 @@ const CategotyItem = ({ item }) => {
             <Wrap
               style={{
                 animationDelay: "1s",
-                color: `${item.id % 2 === 0 ? "#f9ffb9" : "#1d4ed8"}`,
+                color: `${item.id % 2 === 0 ? "#f9ffb9" : "#2C3639"}`,
               }}
             >
               <Title>{item.title}</Title>

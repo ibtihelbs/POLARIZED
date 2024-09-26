@@ -19,9 +19,9 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 600px;
-  box-shadow: 5px 5px 0px #1d4ed8;
+  box-shadow: 5px 5px 0px #2c3639;
   border-radius: 15px;
-  border: 3px solid #1d4ed8;
+  border: 3px solid #2c3639;
   padding: 20px;
   ${mobile({ width: "90%" })};
 `;
@@ -50,9 +50,9 @@ const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  box-shadow: 5px 5px 0px #1d4ed8;
+  box-shadow: 5px 5px 0px #2c3639;
   border-radius: 15px;
-  border: 3px solid #1d4ed8;
+  border: 3px solid #2c3639;
   cursor: pointer;
   margin-bottom: 10px;
 `;

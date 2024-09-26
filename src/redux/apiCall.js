@@ -2,7 +2,6 @@ import { loginFailure, loginStart, loginSucess } from "./user";
 import { addUserStart, addUserSuccess, addUserFailure } from "./register";
 import { addOrder, addOrderFailure, addOrderStart } from "./order";
 import { PUBLIC_REQUEST, userRequest } from "../request";
-
 export const loginApi = async (dispatch, user) => {
   dispatch(loginStart());
   try {

@@ -9,16 +9,16 @@ import { Link } from "react-router-dom";
 const CardContainer = styled.div`
   position: relative;
   flex: 1 1 300px;
-  border: solid #1d4ed8 3px;
-  box-shadow: 5px 5px 0px #1d4ed8;
+  border: solid #2c3639 3px;
+  box-shadow: 5px 5px 0px #2c3639;
   border-radius: 30px;
   overflow: hidden;
   margin: 16px;
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   &:hover {
     transform: translate(5px, 5px);
-    box-shadow: 0px 0px 0px #1d4ed8;
-    color: #1d4ed8;
+    box-shadow: 0px 0px 0px #2c3639;
+    color: #2c3639;
   }
 `;
 
@@ -71,17 +71,17 @@ const StarIcon = styled.span`
 `;
 const Button = styled.button`
   border-radius: 15px;
-  border: 3px solid #1d4ed8;
-  box-shadow: 5px 5px 0px #1d4ed8;
+  border: 3px solid #2c3639;
+  box-shadow: 5px 5px 0px #2c3639;
   padding: 0.5rem 1rem;
-  background-color: red;
-  color: wheat;
+  background-color: #DD4A48;
+  color: #e3c770;
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   &:hover {
     background-color: pink;
     transform: translate(5px, 5px);
-    box-shadow: 0px 0px 0px #1d4ed8;
-    color: #1d4ed8;
+    box-shadow: 0px 0px 0px #2c3639;
+    color: #2c3639;
   }
 `;
 const generateStars = (rating) => {

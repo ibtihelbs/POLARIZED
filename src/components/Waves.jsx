@@ -27,7 +27,7 @@ const WaveContainer = styled.div`
 const Wave = styled.div`
   width: 100%;
   height: 30px;
-  background-color: #1d4ed8;
+  background-color: #df7861;
   animation: ${waveAnimation} 2s infinite;
   margin-top: 5px;
 `;
@@ -36,8 +36,10 @@ const AnimatedWaves = () => {
   return (
     <WaveContainer>
       <Wave />
-      <Wave style={{ animationDelay: "0.2s", backgroundColor: "red" }} />
-      <Wave style={{ animationDelay: "0.4s", backgroundColor: "orange" }} />
+
+      <Wave style={{ animationDelay: "0.2s", backgroundColor: "#D2FF72" }} />
+      <Wave style={{ animationDelay: "0.2s", backgroundColor: "#FECD70" }} />
+      <Wave style={{ animationDelay: "0.4s", backgroundColor: "#E3C770" }} />
     </WaveContainer>
   );
 };

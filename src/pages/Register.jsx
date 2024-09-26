@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import transition from "../transition";
 import { register } from "../redux/apiCall";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -56,38 +57,13 @@ const Button = styled.button`
   border: none;
   outline: none;
   transition: background-color 0.3s ease-in-out;
-  box-shadow: 5px 5px 0px #1d4ed8;
+  box-shadow: 5px 5px 0px #2c3639;
   border-radius: 15px;
-  border: 3px solid #1d4ed8;
+  border: 3px solid #2c3639;
   &:hover {
-    background-color: #1d4ed8;
+    background-color: #2c3639;
     color: #f9ffb9;
   }
-`;
-
-const ModalBackground = styled.div`
-  background-color: rgba(29, 78, 216, 0.8);
-  width: 100vw;
-  height: 100vh;
-  z-index: 50;
-  top: 0;
-  position: fixed;
-  display: ${(props) => (props.visible ? "flex" : "none")};
-  align-items: center;
-  justify-content: center;
-`;
-
-const Modal = styled.div`
-  height: 50%;
-  width: 50%;
-  padding: 1rem;
-  background-color: #f9ffb9;
-  border-radius: 15px;
-  border: 5px double #1d4ed8;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  position: relative;
 `;
 
 const CloseButton = styled.span`
@@ -96,25 +72,13 @@ const CloseButton = styled.span`
   right: 10px;
   cursor: pointer;
   font-size: 20px;
-  color: #1d4ed8;
+  color: #2c3639;
 `;
-
-const Modal_ = ({ name, modal, setModal }) => {
-  return (
-    <ModalBackground visible={modal} onClick={() => setModal(false)}>
-      <Modal onClick={(e) => e.stopPropagation()}>
-        <CloseButton onClick={() => setModal(false)}>x</CloseButton>
-        <h2>Congratulation {name}, you are registered!</h2>
-      </Modal>
-    </ModalBackground>
-  );
-};
 
 const Register = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState({});
-  const [modal, setModal] = useState(false);
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -122,7 +86,8 @@ const Register = () => {
   const handleCreate = (e) => {
     e.preventDefault();
     register(dispatch, input);
-    setModal(true);
+    console.log(input);
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -163,7 +128,6 @@ const Register = () => {
           <Button type="submit">CREATE</Button>
         </Form>
       </Wrapper>
-      <Modal_ setModal={setModal} name={input.name} modal={modal} />
     </Container>
   );
 };

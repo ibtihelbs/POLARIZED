@@ -33,12 +33,12 @@ const TopButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-  box-shadow: 5px 5px 0px #1d4ed8;
+  box-shadow: 5px 5px 0px #2c3639;
   border-radius: 15px;
-  border: 3px solid #1d4ed8;
+  border: 3px solid #2c3639;
 
   &:hover {
-    background-color: #1d4ed8;
+    background-color: #2c3639;
     color: #f9ffb9;
   }
 `;
@@ -138,7 +138,7 @@ const AmountButton = styled.button`
   transition: color 0.3s ease-in-out;
 
   &:hover {
-    color: #1d4ed8;
+    color: #2c3639;
   }
 `;
 
@@ -194,11 +194,11 @@ const CheckoutButton = styled.button`
   border: none;
   outline: none;
   transition: background-color 0.3s ease-in-out;
-  box-shadow: 5px 5px 0px #1d4ed8;
+  box-shadow: 5px 5px 0px #2c3639;
   border-radius: 15px;
-  border: 3px solid #1d4ed8;
+  border: 3px solid #2c3639;
   &:hover {
-    background-color: #1d4ed8;
+    background-color: #2c3639;
   }
 `;
 

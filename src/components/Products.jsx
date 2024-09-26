@@ -20,8 +20,8 @@ const PaginationContainer = styled.div`
 const PageButton = styled.button`
   margin: 0 5px;
   padding: 8px 12px;
-  background-color: ${(props) => (props.active ? "#1d4ed8" : "#f9ffb9")};
-  color: ${(props) => (props.active ? "#f9ffb9" : "#1d4ed8")};
+  background-color: ${(props) => (props.active ? "#2C3639" : "#f9ffb9")};
+  color: ${(props) => (props.active ? "#f9ffb9" : "#2C3639")};
   cursor: pointer;
 `;
 

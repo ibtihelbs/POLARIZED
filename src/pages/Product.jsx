@@ -27,9 +27,9 @@ const Image = styled.img`
   width: 100%;
   height: 75vh;
   object-fit: cover;
-  border: #1d4ed8 3px solid;
+  border: #2c3639 3px solid;
   border-radius: 30px;
-  box-shadow: 5px 5px 0px #1d4ed8;
+  box-shadow: 5px 5px 0px #2c3639;
   ${mobile({ height: "30vh" })};
 `;
 
@@ -119,16 +119,16 @@ const Amount = styled.span`
 const Button = styled.button`
   padding: 15px;
   width: 200px;
-  background-color: #1d4ed8;
+  background-color: #2c3639;
   color: #f9ffb9;
   font-weight: 600;
   cursor: pointer;
   border-radius: 30px;
-  border: 3px solid #1d4ed8;
+  border: 3px solid #2c3639;
   &:hover {
     background-color: #f9ffb9;
-    color: #1d4ed8;
-    border: 3px solid #1d4ed8;
+    color: #2c3639;
+    border: 3px solid #2c3639;
   }
 `;
 
