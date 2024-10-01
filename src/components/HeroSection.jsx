@@ -1,14 +1,15 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { InfiniteSlider } from "./InfiniteSlider";
-import ImagePol from "../components/ImagePol";
-
+import ImagePol from "./core/ImagePol";
+import { Paragraph } from "./core/Text";
+import { Link } from "react-router-dom";
 const HeroContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   color: #0a1174;
-  font-size: 3rem;
+
   gap: 2rem;
   padding: 2rem 3rem;
 `;
@@ -20,8 +21,9 @@ const Title = styled.h1`
 const Subtitle = styled.h4`
   margin-top: -40px;
   margin-bottom: 50px;
-  width: 600px;
+  max-width: 560px;
   line-height: 0.9;
+  font-size: 3rem;
 `;
 
 const Image = styled.img`
@@ -52,7 +54,7 @@ const ImageContainer = styled.div`
 `;
 const TextStripe = styled.div`
   height: 50px;
-  background-color: rgb(210, 255, 114);
+  background-color: var(--neon);
   width: 100%;
   overflow: hidden;
   position: absolute;
@@ -81,15 +83,30 @@ const Text = styled.h3`
   position: absolute;
   z-index: 25;
 `;
+const LinkCta = styled(Link)`
+  padding: 1rem 2rem;
+  float: right;
+  border: inherit solid 2px;
+  border-radius: 999px;
+  background-color: var(--neon);
+  border: 1px var(--dark-grey) solid;
+`;
 const HeroSection = () => {
   return (
     <HeroContainer>
       <div>
-        <Title>polarized</Title>
-        <Subtitle>
+        <Title>POLARIZED</Title>
+        <Subtitle className="signature">
           Where we get it — your style is a mood, and we're here for every
           swing.
         </Subtitle>
+        <Paragraph
+          content={`Playful or Classic? Why Not Both?** Our collection is all about
+          options. From *bold and playful* pieces to *sleek and timeless
+          basics*, we’ve got something for every vibe. Because why choose when
+          you can have it all?`}
+        />
+        <LinkCta href={"/shop"}> Shop Now </LinkCta>
       </div>
 
       <ImagePol>
@@ -134,70 +151,6 @@ const HeroSection = () => {
           </Wrap>
         </ImageContainer>
       </ImagePol>
-      {/*
-      <AboutText id="about">
-       
-
-        <div>
-          ### **Playful or Classic? Why Not Both?** Our collection is all about
-          options. From *bold and playful* pieces to *sleek and timeless
-          basics*, we’ve got something for every vibe. Because why choose when
-          you can have it all?
-        </div>
-
-        <div>
-          ### **Quality That Matches Your Vibe** Every item is crafted with
-          care, combining *uniqueness* with *high quality*. Whether you're
-          stepping out or keeping it chill, we’ve got the pieces to elevate your
-          look and last through the swings.
-        </div>
-
-        <div>
-          ### **Slide Into Your Style** Ready to express every side of you?
-          Polarized makes it easy. Browse our collections, and let your style
-          shine through. Whether you're feeling loud or laid-back, we’re here to
-          match your mood.
-        </div>
-
-        <div>
-          ### **Mood Swings Welcome!** No judgment here. Style changes with the
-          moment, and we’re all for it! Let us help you find the perfect match
-          for today’s vibe — and tomorrow’s too.
-        </div>
-      </AboutText>  <AboutText id="about">
-        <div>
-          ### **Welcome to POLARIZED** Where we get it — your style is a mood,
-          and we're here for every swing.
-        </div>
-
-        <div>
-          ### **Playful or Classic? Why Not Both?** Our collection is all about
-          options. From *bold and playful* pieces to *sleek and timeless
-          basics*, we’ve got something for every vibe. Because why choose when
-          you can have it all?
-        </div>
-
-        <div>
-          ### **Quality That Matches Your Vibe** Every item is crafted with
-          care, combining *uniqueness* with *high quality*. Whether you're
-          stepping out or keeping it chill, we’ve got the pieces to elevate your
-          look and last through the swings.
-        </div>
-
-        <div>
-          ### **Slide Into Your Style** Ready to express every side of you?
-          Polarized makes it easy. Browse our collections, and let your style
-          shine through. Whether you're feeling loud or laid-back, we’re here to
-          match your mood.
-        </div>
-
-        <div>
-          ### **Mood Swings Welcome!** No judgment here. Style changes with the
-          moment, and we’re all for it! Let us help you find the perfect match
-          for today’s vibe — and tomorrow’s too.
-        </div>
-      </AboutText>
-    */}
     </HeroContainer>
   );
 };

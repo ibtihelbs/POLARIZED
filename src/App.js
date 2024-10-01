@@ -1,6 +1,8 @@
 import Cart from "./pages/Cart";
 import { useLocation, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import GlobalStyles from "./components/core/GlobalStyles";
+
 import Login from "./pages/Login";
 import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
@@ -18,6 +20,7 @@ function App() {
   const User = useSelector((state) => state.user.currentUser);
   return (
     <div className="App">
+      <GlobalStyles />
       <div className="noise"></div>
       {/**<Preloader /> */}
       <Navbar user={User} />

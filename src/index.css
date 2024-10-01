@@ -10,7 +10,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
   color: #2c3639;
   font-family: "Poppins", sans-serif;
 }
@@ -35,20 +34,17 @@ body {
 }
 h1 {
   font-family: "Modak", sans-serif;
-  font-size: 96px;
+  font-size: 100px;
+  line-height: 150px;
+  letter-spacing: -1px;
 }
 nav h3 {
   font-family: "Modak", sans-serif;
 }
-#about {
-  line-height: 1;
+
+.signature {
   font-family: "MsSaint", cursive;
-}
-#about span {
-  font-family: "Modak", sans-serif;
-}
-h4 {
-  font-family: "MsSaint", cursive;
+  font-size: 40px;
 }
 button {
   background-color: transparent;
