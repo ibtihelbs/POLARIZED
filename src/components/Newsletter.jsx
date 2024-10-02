@@ -38,7 +38,7 @@ const Input = styled.input`
 const Button = styled.button`
   flex: 1;
   border: none;
-  background-color: #2c3639;
+  background-color: var(--dark-grey);
   color: white;
 `;
 
@@ -46,7 +46,11 @@ const Newsletter = () => {
   return (
     <Container>
       <hr
-        style={{ backgroundColor: "#2C3639", width: "100%", height: "5px" }}
+        style={{
+          backgroundColor: "var(--dark-grey)",
+          width: "100%",
+          height: "5px",
+        }}
       />
       <Title>Newsletter</Title>
       <Desc>Get timely updates from your favorite products.</Desc>

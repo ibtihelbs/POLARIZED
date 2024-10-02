@@ -31,7 +31,13 @@ const HomeComponant = () => {
       {productCopy.map((v, index) => {
         const { product, copy, img } = v;
         return (
-          <Feature key={index} img={img} title={product} paragraph={copy} />
+          <Feature
+            order={index % 2}
+            key={index}
+            img={img}
+            title={product}
+            paragraph={copy}
+          />
         );
       })}
       {/*<Products />

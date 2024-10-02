@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { InfiniteSlider } from "./InfiniteSlider";
 import ImagePol from "./core/ImagePol";
 import { Paragraph } from "./core/Text";
-import { Link } from "react-router-dom";
+import { Linked } from "./core/Components";
 const HeroContainer = styled.div`
   display: flex;
   align-items: center;
@@ -31,7 +31,7 @@ const Image = styled.img`
   height: 100%;
   width: 100%;
   border-radius: 30px;
-  border: solid 3px #2c3639;
+  border: solid 3px var(--dark-grey);
   position: absolute;
   z-index: ${(props) => props.theme.index};
 `;
@@ -78,19 +78,12 @@ const Wrap = styled.div`
 
 const Text = styled.h3`
   eight: 50px;
-  background-color: rgb(210, 255, 114);
+  background-color: var(--neon);
   width: 100%;
   position: absolute;
   z-index: 25;
 `;
-const LinkCta = styled(Link)`
-  padding: 1rem 2rem;
-  float: right;
-  border: inherit solid 2px;
-  border-radius: 999px;
-  background-color: var(--neon);
-  border: 1px var(--dark-grey) solid;
-`;
+
 const HeroSection = () => {
   return (
     <HeroContainer>
@@ -106,7 +99,7 @@ const HeroSection = () => {
           basics*, we’ve got something for every vibe. Because why choose when
           you can have it all?`}
         />
-        <LinkCta href={"/shop"}> Shop Now </LinkCta>
+        <Linked link={"/shop"} name={"Shop Now "} />
       </div>
 
       <ImagePol>

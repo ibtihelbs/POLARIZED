@@ -6,7 +6,7 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { deleteProduct, updateQuantity } from "../redux/cart";
 import { MdDelete } from "react-icons/md";
-
+import { Button, Linked } from "../components/core/Components";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -26,21 +26,6 @@ const Top = styled.div`
   justify-content: space-between;
   padding: 20px;
   border-bottom: 1px solid #ccc;
-`;
-
-const TopButton = styled.button`
-  padding: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  box-shadow: 5px 5px 0px #2c3639;
-  border-radius: 15px;
-  border: 3px solid #2c3639;
-
-  &:hover {
-    background-color: #2c3639;
-    color: #f9ffb9;
-  }
 `;
 
 const TopTexts = styled.div`
@@ -66,7 +51,7 @@ const Info = styled.div`
 const Product = styled.div`
   display: flex;
   padding: 1rem;
-  border: blue solid 1px;
+  border: var(--dark-blue) solid 3px;
   border-radius: 8px;
 
   justify-content: space-between;
@@ -138,7 +123,7 @@ const AmountButton = styled.button`
   transition: color 0.3s ease-in-out;
 
   &:hover {
-    color: #2c3639;
+    color: var(--dark-grey);
   }
 `;
 
@@ -186,22 +171,6 @@ const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
 
-const CheckoutButton = styled.button`
-  width: 100%;
-  padding: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  transition: background-color 0.3s ease-in-out;
-  box-shadow: 5px 5px 0px #2c3639;
-  border-radius: 15px;
-  border: 3px solid #2c3639;
-  &:hover {
-    background-color: #2c3639;
-  }
-`;
-
 const Cart = () => {
   const prod = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
@@ -221,15 +190,19 @@ const Cart = () => {
           <>
             <Title>Your Bag</Title>
             <Top>
-              <TopButton>
-                <Link to={"/ProductList"}>Continue Shopping</Link>
-              </TopButton>
+              <Linked
+                link={"/ProductList"}
+                name={"Continue Shopping"}
+                color={"var(--dark-grey)"}
+                bg={"var(--bg-color)"}
+              />
+
               <TopTexts>
                 <TopText>Shopping Bag ({prod.products.length})</TopText>
                 <TopText>Your Wishlist (0)</TopText>
               </TopTexts>
               <Link to={currentUser ? "/checkout" : "/login"}>
-                <TopButton type="filled">Checkout Now</TopButton>
+                <Button content={"Checkout"} />
               </Link>
             </Top>
             <Bottom>
@@ -312,7 +285,9 @@ const Cart = () => {
                   <SummaryItemText>Total</SummaryItemText>
                   <SummaryItemPrice>${Math.round(prod.total)}</SummaryItemPrice>
                 </SummaryItem>
-                <CheckoutButton>Checkout Now</CheckoutButton>
+                <Link to={currentUser ? "/checkout" : "/login"}>
+                  <Button content={"Checkout"} />
+                </Link>
               </Summary>
             </Bottom>
           </>

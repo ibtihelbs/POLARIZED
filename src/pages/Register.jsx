@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import transition from "../transition";
 import { register } from "../redux/apiCall";
 import { useNavigate } from "react-router-dom";
-
+import { Button } from "../components/core/Components";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -17,8 +17,8 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 60%;
   padding: 20px;
-  border: 3px solid rgb(29, 78, 216);
-  box-shadow: rgb(29, 78, 216) 5px 5px 0px;
+  border: 3px solid var(--dark-grey);
+  box-shadow: var(--dark-grey) 5px 5px 0px;
   border-radius: 30px;
   ${mobile({ width: "75%" })}
 `;
@@ -36,7 +36,7 @@ const Form = styled.form`
 
 const Input = styled.input`
   width: 100%;
-  border: 3px solid rgb(29, 78, 216);
+  border: 3px solid var(--dark-grey);
   margin: 20px 10px 0px 0px;
   padding: 10px;
   background-color: transparent;
@@ -48,31 +48,13 @@ const Agreement = styled.span`
   margin: 20px 0px;
 `;
 
-const Button = styled.button`
-  padding: 10px;
-  font-weight: 600;
-  place-self: start;
-  padding: 1rem 4rem;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  transition: background-color 0.3s ease-in-out;
-  box-shadow: 5px 5px 0px #2c3639;
-  border-radius: 15px;
-  border: 3px solid #2c3639;
-  &:hover {
-    background-color: #2c3639;
-    color: #f9ffb9;
-  }
-`;
-
 const CloseButton = styled.span`
   position: absolute;
   top: 10px;
   right: 10px;
   cursor: pointer;
   font-size: 20px;
-  color: #2c3639;
+  color: var(--dark-grey);
 `;
 
 const Register = () => {
@@ -125,7 +107,15 @@ const Register = () => {
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>.
           </Agreement>
-          <Button type="submit">CREATE</Button>
+          <span>
+            <Button
+              //onClick={handleLogin}
+              type={"submit"}
+              content={"Create"}
+              color={"var(--dark-grey)"}
+              bgc={"var(--bg-color)"}
+            />
+          </span>
         </Form>
       </Wrapper>
     </Container>

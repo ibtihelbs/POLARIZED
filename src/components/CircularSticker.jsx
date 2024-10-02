@@ -6,7 +6,7 @@ const StickerContainer = styled.div`
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background-color: #2c3639;
+  background-color: var(--dark-grey);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -8,6 +8,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { logoutSuccess } from "../redux/user";
+import { useLocation } from "react-router-dom";
 const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -47,10 +48,10 @@ const Menudropdown = styled.ul`
   position: absolute;
   z-index: 10;
   top: 100%;
-  border: 1px solid #2c3639;
+  border: 1px solid var(--dark-grey);
   background-color: #f9ffb9;
   padding: 1rem;
-  box-shadow: 5px 5px 0px #2c3639;
+  box-shadow: 5px 5px 0px var(--dark-grey);
   border-radius: 1rem;
 `;
 const Li = styled.li`
@@ -60,12 +61,16 @@ const Li = styled.li`
     opacity: 0.5;
   }
 `;
-const Navbar = ({ user }) => {
+const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
+  const User = useSelector((state) => state.user.currentUser);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searched, setSearched] = useState("");
   const [dropDown, setDropDown] = useState(false);
+  const location = useLocation();
+
   const handleSearch = (ev) => {
     ev.preventDefault();
     navigate(`productlist/${searched}`);
@@ -96,7 +101,7 @@ const Navbar = ({ user }) => {
         <Li>
           <StyledLink to={"/ProductList"}>shop</StyledLink>
         </Li>
-        {user ? (
+        {User ? (
           <>
             <Li onClick={handleDropDown}>
               <BsFillPersonFill />

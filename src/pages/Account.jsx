@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux";
 
 const Account = () => {
   const orders = useSelector((state) => state.order.productOrder);

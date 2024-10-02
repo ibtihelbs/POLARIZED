@@ -10,7 +10,7 @@ const cartSlice = createSlice({
   reducers: {
     addProduct: (state, action) => {
       let isFound = -1;
-      if (state.products) {
+      if (Boolean(state.products)) {
         isFound = state.products.findIndex((v) => v._id === action.payload._id);
       }
       if (isFound === -1) {
@@ -43,8 +43,10 @@ const cartSlice = createSlice({
       );
       state.products[isFound].quantity = action.payload.newQuantity;
       state.total = 0;
+      state.quantity = 0;
       state.products.forEach((element) => {
         state.total += Math.round(element.price * element.quantity);
+        state.quantity += element.quantity;
       });
     },
     validProduct: (state, action) => {

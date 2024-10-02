@@ -12,8 +12,8 @@ const StyledParagraph = styled.p`
 const StyledTitle = styled.h1`
   align-text: ${(props) => (props.align ? props.align : "left")};
   grid-column: ${(props) => (props.col ? props.col : "1 / 2")};
-  line-height: 25px;
-  font-size: 56px;
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "56px")};
+  line-height: 100%;
   letter-spacing: -1px;
 `;
 const StyledSubsTitle = styled.h2`
@@ -31,9 +31,10 @@ const Paragraph = ({ content, align, col }) => {
     </StyledParagraph>
   );
 };
-const Title = ({ content, align, col }) => {
+
+const Title = ({ content, align, col, fontSize }) => {
   return (
-    <StyledTitle align={align} col={col}>
+    <StyledTitle align={align} col={col} fontSize={fontSize}>
       {" "}
       {content}{" "}
     </StyledTitle>
