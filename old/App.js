@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 import { AnimatePresence } from "framer-motion";
 
-
 function App() {
   const location = useLocation();
   const User = useSelector((state) => state.user.currentUser);

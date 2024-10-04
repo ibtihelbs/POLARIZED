@@ -7,6 +7,7 @@ const GlobalStyles = createGlobalStyle`
     --dark-grey: #2c3639;
     --bg-color: #fcf8e8;
     --neon: rgb(210, 255, 114);
+    --red: rgb(195, 36, 36);
   }
 
   

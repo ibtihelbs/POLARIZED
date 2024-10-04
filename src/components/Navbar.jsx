@@ -64,7 +64,7 @@ const Li = styled.li`
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
   const User = useSelector((state) => state.user.currentUser);
-
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searched, setSearched] = useState("");

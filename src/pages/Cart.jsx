@@ -174,7 +174,7 @@ const SummaryItemPrice = styled.span``;
 const Cart = () => {
   const prod = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
-  console.log(prod);
+ 
   const currentUser = user.currentUser;
   const dispatch = useDispatch();
   const remove = (v) => {

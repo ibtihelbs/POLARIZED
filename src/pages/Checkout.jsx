@@ -1,97 +1,136 @@
 import { useSelector, useDispatch } from "react-redux";
 import { order } from "../redux/apiCall";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { addOrder } from "../redux/order";
 import { validProduct } from "../redux/cart";
+import { Button, TextInput, Label } from "../components/core/Components";
+
 const Checkout = () => {
   const user = useSelector((state) => state.user);
   const prod = useSelector((state) => state.cart);
-  console.log(useSelector((state) => state));
   const [ordered, setOrdered] = useState(false);
-  const dispatch = useDispatch();
-  const [contact, setContact] = useState(null);
-  const currentUser = user.currentUser;
-  const { products, quantity, total } = prod;
-  const userId = currentUser._id;
-  const handleChange = (e) => {
-    setContact((prev) => {
-      return { ...prev, [e.target.name]: e.target.value };
-    });
-  };
-  const prodId = products.map((v) => {
-    return { productId: v._id };
+  const [contact, setContact] = useState({
+    phone: "",
+    address: "",
   });
-  const addOrderFn = (e) => {
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const currentUser = user.currentUser;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!currentUser) {
+      navigate("/ProductList");
+    }
+  }, [currentUser, navigate]);
+
+  const { products, quantity, total } = prod;
+
+  // Handle input changes
+  const handleChange = (e) => {
+    setContact((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const prodId = products.map((v) => ({
+    productId: v._id,
+    img: v.img,
+    title: v.title,
+    price: v.price,
+  }));
+
+  // Handle order submission
+  const addOrderFn = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
     const orderRedux = {
-      ...contact,
-      userId,
-      product: prodId,
+      userId: { ...contact, ...currentUser },
+      product: { prodId, total, date: new Date().toISOString() }, // Save the current date
       amount: quantity,
     };
 
-    order(dispatch, orderRedux);
-    dispatch(addOrder(orderRedux));
-    dispatch(validProduct());
-    setOrdered(true);
+    try {
+      await order(dispatch, orderRedux);
+      dispatch(addOrder(orderRedux));
+      dispatch(validProduct());
+      setOrdered(true);
+    } catch (error) {
+      console.error("Failed to place order:", error);
+      // Optionally, you could handle error state here
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
     <div className="checkout">
       {!ordered ? (
         <div>
           <div className="items-wrap">
-            <h2>hello {currentUser.username} ! </h2>
-            {products.map((item, i) => (
+            <h2>Hello {currentUser?.username}!</h2>
+            {products.map((item) => (
               <div className="item" key={item._id}>
                 <div>
-                  <h3 key={i}> {item.title} </h3>
+                  <h3>{item.title}</h3>
                   <div className="info">
-                    <span>size : {item.size || "no size"} </span>
-                    <span> price: {item.price} </span>
+                    <span>Size: {item.size || "No size"}</span>
+                    <span>Price: {item.price}</span>
                   </div>
                 </div>
                 <img src={item.img} alt={item.title} />
               </div>
             ))}
-            <h2>quantity: {quantity}</h2>
-            <h2>total : {total} </h2>
+            <h2>Quantity: {quantity}</h2>
+            <h2>Total: {total}</h2>
           </div>
-          <form>
-            <h2>hello {currentUser.username} ! </h2>
 
+          <form onSubmit={addOrderFn}>
             <div>
-              <label htmlFor="phone number">Phone N°:</label> <br />
-              <input
+              <Label htmlFor="phone">Phone N°:</Label>
+              <TextInput
                 required
                 type="tel"
-                pattern="[0-9]{2} [0-9]{3} [0-9]{3}"
                 name="phone"
-                onChange={handleChange}
+                onChange={handleChange} // Handle input change
                 placeholder="+216 22 55 33 44"
+                bgc={"var(--dark-grey)"}
+                focusbgc={"var(--primary-color)"}
               />
             </div>
+
             <div>
-              <label htmlFor="adresse">Adresse</label> <br />
-              <input
+              <Label htmlFor="address">Address:</Label>
+              <TextInput
                 required
                 type="text"
                 name="address"
-                onChange={handleChange}
-                placeholder="adress, 2050, lala land"
+                onChange={handleChange} // Handle input change
+                placeholder="Address, 2050, lala land"
+                bgc="var(--dark-grey)"
+                focusbgc="var(--primary-color)"
               />
             </div>
+
             <div className="cta">
-              <Link to={"/cart"}>Go back</Link>
-              <button onClick={addOrderFn} type="submit">
-                Order Now
-              </button>
+              <Link to="/cart">Go back</Link>
+              <Button
+                content={loading ? "Ordering..." : "Order Now"}
+                type="submit"
+                bgc="var(--red)"
+                color="var(--bg-color)"
+                disabled={loading} // Disable the button while loading
+              />
             </div>
           </form>
         </div>
       ) : (
         <div style={{ flexDirection: "column" }}>
-          <h3> Your order is confirmed </h3>
-          <Link to={"/"}>go home</Link>
+          <h3>Your order is confirmed</h3>
+          <Link to="/">Go home</Link>
         </div>
       )}
     </div>

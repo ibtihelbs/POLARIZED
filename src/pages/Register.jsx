@@ -96,11 +96,13 @@ const Register = () => {
               onChange={handleChange}
               name="password"
               placeholder="Password"
+              type="password"
             />
             <Input
               onChange={handleChange}
               name="confirmPassword"
               placeholder="Confirm Password"
+              type="password"
             />
           </div>
           <Agreement>

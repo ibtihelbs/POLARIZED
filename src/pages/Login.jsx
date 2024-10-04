@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginApi } from "../redux/apiCall";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import transition from "../transition";
 import { Button } from "../components/core/Components";
 const Container = styled.div`
@@ -56,12 +56,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatcher = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
     loginApi(dispatcher, { username, password });
-    console.log(isFetching, error);
+    navigate("/");
   };
 
   return (
@@ -80,7 +81,7 @@ const Login = () => {
           />
           <span>
             <Button
-              //onClick={handleLogin}
+              onClick={handleLogin}
               type={"submit"}
               content={"Login"}
               color={"var(--dark-grey)"}
