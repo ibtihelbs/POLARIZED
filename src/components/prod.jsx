@@ -125,7 +125,7 @@ const generateStars = (rating) => {
 
 // ProductCard component
 const ProductCard = ({ product }) => {
-  const { title, price, img, rate, _id, categories } = product;
+  const { title, price, img, rate, _id, tags, category } = product;
   const dispatch = useDispatch();
 
   return (
@@ -135,10 +135,11 @@ const ProductCard = ({ product }) => {
       </Link>
       <Content>
         <Title>{title}</Title>
+        <p> {category} </p>
         <ProductInfo>
           <InfoGrid>
             <FlexContainer>
-              {categories.map((v, index) => (
+              {tags.map((v, index) => (
                 <Tags key={index} to={`../productlist/${v}`}>
                   {v}
                 </Tags>

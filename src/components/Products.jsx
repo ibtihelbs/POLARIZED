@@ -4,6 +4,7 @@ import axios from "axios";
 import ProductCard from "./prod";
 import { useLocation } from "react-router-dom";
 import { tablet } from "../responsive";
+
 const Container = styled.div`
   padding: 20px;
   display: grid;
@@ -45,67 +46,66 @@ const PaginationBar = ({ totalPages, currentPage, onPageChange }) => {
 
 const Products = ({ sort, filter, categ }) => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setfilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9; // Change this value based on your desired items per page
+  const itemsPerPage = 9;
   const location = useLocation().pathname.includes("productlist");
 
+  // Fetch products based on category
   useEffect(() => {
     const getProducts = async () => {
       try {
         const res = await axios.get(
           categ
-            ? `https://polarized-store-api.onrender.com/api/products?categories=${categ}`
+            ? `https://polarized-store-api.onrender.com/api/products?tags=${categ}`
             : "https://polarized-store-api.onrender.com/api/products"
         );
-        if (location) {
-          setProducts(res.data);
-        } else {
-          setProducts(res.data.slice(0, itemsPerPage));
-        }
-        console.log(res.data);
+        setProducts(location ? res.data : res.data.slice(0, 3));
+        console.log("Fetched Products:", res.data);
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching products:", error);
       }
     };
     getProducts();
-  }, [categ]);
-  console.log(products);
+  }, [categ, location]);
+
+  // Filter products based on filter criteria
   useEffect(() => {
-    categ &&
-      setfilteredProducts(
-        products.filter((item) =>
-          Object.entries(filter).every(([key, value]) =>
-            item[key].includes(value)
+    const filterProducts = () => {
+      if (categ) {
+        setFilteredProducts(
+          products.filter(
+            (item) =>
+              item.category == categ || item.tags.join("").includes(categ)
           )
-        )
-      );
+        );
+      } else {
+        console.log("first");
+        setFilteredProducts(products);
+      }
+    };
+    filterProducts();
+    console.log("Filtered Products:", filteredProducts);
   }, [filter, categ, products]);
 
+  // Sort products based on criteria
   useEffect(() => {
     if (sort === "newest") {
-      setfilteredProducts((prev) =>
-        [...prev].sort((a, b) => a.createdAt - b.createdAt)
-      );
-      setProducts((prev) =>
-        [...prev].sort((a, b) => a.createdAt - b.createdAt)
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       );
     } else if (sort === "asc") {
-      setfilteredProducts((prev) =>
+      setFilteredProducts((prev) =>
         [...prev].sort((a, b) => a.price - b.price)
       );
-      setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
-    } else {
-      setfilteredProducts((prev) =>
-        [...prev].sort((b, a) => a.price - b.price)
+    } else if (sort === "desc") {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => b.price - a.price)
       );
-      setProducts((prev) => [...prev].sort((b, a) => a.price - b.price));
     }
   }, [sort]);
 
-  const totalPages = Math.ceil(
-    (categ ? filteredProducts.length : products.length) / itemsPerPage
-  );
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -113,9 +113,7 @@ const Products = ({ sort, filter, categ }) => {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const displayedProducts = categ
-    ? filteredProducts.slice(startIndex, endIndex)
-    : products.slice(startIndex, endIndex);
+  const displayedProducts = filteredProducts.slice(startIndex, endIndex);
 
   return (
     <section>

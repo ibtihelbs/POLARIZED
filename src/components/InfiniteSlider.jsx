@@ -11,7 +11,7 @@ export function InfiniteSlider({
   duration = 25,
   durationOnHover,
   direction = "horizontal",
-  reverse = false,
+  reverse = true,
 }) {
   const [currentDuration, setCurrentDuration] = useState(duration);
   const [ref, { width, height }] = useMeasure();
@@ -91,8 +91,8 @@ export function InfiniteSlider({
         ref={ref}
         {...hoverProps}
       >
-        {children.props.children}
-        {children.props.children}
+        <h1>{children.props.children}</h1>
+        <h1>{children.props.children}</h1>
       </motion.div>
     </Container>
   );

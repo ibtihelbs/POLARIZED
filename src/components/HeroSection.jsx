@@ -2,7 +2,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { InfiniteSlider } from "./InfiniteSlider";
 import ImagePol from "./core/ImagePol";
-import { Paragraph } from "./core/Text";
+import { Paragraph, Title } from "./core/Text";
 import { Linked } from "./core/Components";
 const HeroContainer = styled.div`
   display: flex;
@@ -13,17 +13,14 @@ const HeroContainer = styled.div`
   gap: 2rem;
   padding: 2rem 3rem;
 `;
-
-const Title = styled.h1`
-  margin: 0;
+const Flex = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
-
 const Subtitle = styled.h4`
-  margin-top: -40px;
-  margin-bottom: 50px;
-  max-width: 560px;
-  line-height: 0.9;
-  font-size: 3rem;
+  font-size: 2rem;
+  line-height: 150%;
 `;
 
 const Image = styled.img`
@@ -35,7 +32,9 @@ const Image = styled.img`
   position: absolute;
   z-index: ${(props) => props.theme.index};
 `;
-
+const Container = styled.div`
+  width: 60%;
+`;
 const theme = {
   index: 20,
 };
@@ -53,7 +52,6 @@ const ImageContainer = styled.div`
   background-image: url(./assets/images/hero/bg-mini.webp);
 `;
 const TextStripe = styled.div`
-  height: 50px;
   background-color: var(--neon);
   width: 100%;
   overflow: hidden;
@@ -76,23 +74,24 @@ const Wrap = styled.div`
   width: 100%;
 `;
 
-const Text = styled.h3`
-  eight: 50px;
-  background-color: var(--neon);
-  width: 100%;
-  position: absolute;
-  z-index: 25;
-`;
+const Text = styled.h1``;
 
 const HeroSection = () => {
   return (
     <HeroContainer>
-      <div>
-        <Title>POLARIZED</Title>
-        <Subtitle className="signature">
-          Where we get it — your style is a mood, and we're here for every
-          swing.
-        </Subtitle>
+      <Container>
+        <Title content={"POLARIZED"} fontSize={"80px"} />
+        <Flex>
+          <span>_______________________________</span>
+          <Subtitle className="signature">Your style is a mood,</Subtitle>
+        </Flex>
+
+        <Flex>
+          <Subtitle className="signature">
+            And we're here for every swing.
+          </Subtitle>
+          <span>_____________________</span>
+        </Flex>
         <Paragraph
           content={`Playful or Classic? Why Not Both?** Our collection is all about
           options. From *bold and playful* pieces to *sleek and timeless
@@ -100,19 +99,15 @@ const HeroSection = () => {
           you can have it all?`}
         />
         <Linked link={"/shop"} name={"Shop Now "} />
-      </div>
+      </Container>
 
       <ImagePol>
         <ImageContainer>
-          <Image
-            src="./assets/images/hero/bg.webp"
-            alt="hero image"
-            loading="lazy"
-          />
+          <Image src="./images/hero/bg.webp" alt="hero image" loading="lazy" />
 
           <ThemeProvider theme={theme}>
             <Image
-              src="./assets/images/hero/skateboard.png"
+              src="./images/hero/skateboard.png"
               alt="hero image"
               loading="lazy"
             />
@@ -121,14 +116,16 @@ const HeroSection = () => {
             <ThemeProvider theme={TextPositionOne}>
               <TextStripe>
                 <InfiniteSlider>
-                  <Text>first line - first line</Text>
+                  <Text>
+                    Your style is a mood- And we're here for every swing.
+                  </Text>
                 </InfiniteSlider>
               </TextStripe>
             </ThemeProvider>
           </Wrap>
           <ThemeProvider theme={themeTwo}>
             <Image
-              src="./assets/images/hero/top.png"
+              src="./images/hero/top.png"
               alt="hero image"
               loading="lazy"
             />
@@ -137,7 +134,9 @@ const HeroSection = () => {
             <ThemeProvider theme={TextPositionTwo}>
               <TextStripe>
                 <InfiniteSlider>
-                  <Text>first line - first line</Text>
+                  <Text>
+                    Your style is a mood- And we're here for every swing.
+                  </Text>
                 </InfiniteSlider>
               </TextStripe>
             </ThemeProvider>

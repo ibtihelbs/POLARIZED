@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { IoMdMail } from "react-icons/io";
-
+import { Button, TextInput } from "./core/Components";
 const Container = styled.div`
   height: 60vh;
   display: flex;
@@ -22,24 +22,15 @@ const Desc = styled.div`
 `;
 const InputContainer = styled.div`
   width: 50%;
-  height: 40px;
-  background-color: white;
+  padding: 1rem;
   display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 999px;
+  box-shadow: 5px 5px 0px var(--dark-grey);
   justify-content: space-between;
-  border: 1px solid lightgray;
+  border: 2px solid var(--dark-grey);
   ${mobile({ width: "80%" })}
-`;
-const Input = styled.input`
-  border: none;
-  flex: 8;
-  padding-left: 20px;
-`;
-
-const Button = styled.button`
-  flex: 1;
-  border: none;
-  background-color: var(--dark-grey);
-  color: white;
 `;
 
 const Newsletter = () => {
@@ -55,10 +46,8 @@ const Newsletter = () => {
       <Title>Newsletter</Title>
       <Desc>Get timely updates from your favorite products.</Desc>
       <InputContainer>
-        <Input placeholder="Your email" />
-        <Button>
-          <IoMdMail className="icon-light" />
-        </Button>
+        <TextInput placeholder="Your email" />
+        <Button content={<IoMdMail className="icon-light" />} />
       </InputContainer>
     </Container>
   );

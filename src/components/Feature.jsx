@@ -7,6 +7,7 @@ const Section = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  backgound-color: ${(props) => (props.bg ? props.bg : "red")};
 `;
 const Frame = styled.div`
   display: grid;
@@ -17,9 +18,9 @@ const Frame = styled.div`
 
   padding: 1rem;
 `;
-const Feature = ({ title, img, paragraph, order }) => {
+const Feature = ({ title, img, paragraph, order, bg }) => {
   return (
-    <Section>
+    <Section bg={bg}>
       <Frame>
         <ImagePol>
           <Image src={img} alt={title} />
@@ -29,7 +30,7 @@ const Feature = ({ title, img, paragraph, order }) => {
           <Title content={title} col={"span 2"} />
 
           <Paragraph content={paragraph} />
-          <Linked name={"Shop Now"} link={"/shop"} />
+          <Linked name={"Shop Now"} link={"/productlist"} />
         </div>
       </Frame>
     </Section>

@@ -49,6 +49,7 @@ const StyledLink = styled(Link)`
 
 const StyledInput = styled.input`
   width: ${(props) => props.width || "100%"};
+  height: ${(props) => props.height || "100%"};
   padding: ${(props) => props.padding || "10px"};
   margin: ${(props) => props.margin || "10px 0"};
   border: 3px solid ${(props) => props.borderColor || "var(--dark-grey)"};
