@@ -139,7 +139,7 @@ const ProductCard = ({ product }) => {
         <ProductInfo>
           <InfoGrid>
             <FlexContainer>
-              {tags.map((v, index) => (
+              {tags?.map((v, index) => (
                 <Tags key={index} to={`../productlist/${v}`}>
                   {v}
                 </Tags>

@@ -48,7 +48,7 @@ const Products = ({ sort, filter, categ }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
+  const itemsPerPage = 6;
   const location = useLocation().pathname.includes("productlist");
 
   // Fetch products based on category
@@ -60,8 +60,7 @@ const Products = ({ sort, filter, categ }) => {
             ? `https://polarized-store-api.onrender.com/api/products?tags=${categ}`
             : "https://polarized-store-api.onrender.com/api/products"
         );
-        setProducts(location ? res.data : res.data.slice(0, 3));
-        console.log("Fetched Products:", res.data);
+        setProducts(res.data);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -76,21 +75,19 @@ const Products = ({ sort, filter, categ }) => {
         setFilteredProducts(
           products.filter(
             (item) =>
-              item.category == categ || item.tags.join("").includes(categ)
+              item.category == categ || item.tags?.join("").includes(categ)
           )
         );
       } else {
-        console.log("first");
         setFilteredProducts(products);
       }
     };
     filterProducts();
-    console.log("Filtered Products:", filteredProducts);
   }, [filter, categ, products]);
 
   // Sort products based on criteria
   useEffect(() => {
-    if (sort === "newest") {
+    if (sort === "Newest") {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       );
@@ -113,7 +110,9 @@ const Products = ({ sort, filter, categ }) => {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const displayedProducts = filteredProducts.slice(startIndex, endIndex);
+  const displayedProducts = !location
+    ? filteredProducts.slice(startIndex, endIndex)
+    : filteredProducts.slice(0, 3);
 
   return (
     <section>
