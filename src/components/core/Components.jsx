@@ -36,7 +36,7 @@ const StyledLink = styled(Link)`
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   font-weight: bold;
   background-color: ${(props) => props.bgc || "var(--neon)"};
-
+  place-self: end;
   &:hover {
     background-color: ${(props) =>
       props.bgc ? props.color : "var(--dark-grey)"};

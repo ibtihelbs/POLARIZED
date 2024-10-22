@@ -9,9 +9,8 @@ const HeroContainer = styled.div`
   align-items: center;
   justify-content: center;
   color: #0a1174;
-
   gap: 2rem;
-  padding: 2rem 3rem;
+  padding: 2rem 1rem;
 `;
 const Flex = styled.div`
   display: flex;
@@ -33,7 +32,7 @@ const Image = styled.img`
   z-index: ${(props) => props.theme.index};
 `;
 const Container = styled.div`
-  width: 60%;
+  width: 40%;
 `;
 const theme = {
   index: 20,
@@ -79,28 +78,6 @@ const Text = styled.h1``;
 const HeroSection = () => {
   return (
     <HeroContainer>
-      <Container>
-        <Title content={"POLARIZED"} fontSize={"80px"} />
-        <Flex>
-          <span>_______________________________</span>
-          <Subtitle className="signature">Your style is a mood,</Subtitle>
-        </Flex>
-
-        <Flex>
-          <Subtitle className="signature">
-            And we're here for every swing.
-          </Subtitle>
-          <span>_____________________</span>
-        </Flex>
-        <Paragraph
-          content={`Playful or Classic? Why Not Both?** Our collection is all about
-          options. From *bold and playful* pieces to *sleek and timeless
-          basics*, we’ve got something for every vibe. Because why choose when
-          you can have it all?`}
-        />
-        <Linked link={"/shop"} name={"Shop Now "} />
-      </Container>
-
       <ImagePol>
         <ImageContainer>
           <Image src="./images/hero/bg.webp" alt="hero image" loading="lazy" />
@@ -143,6 +120,28 @@ const HeroSection = () => {
           </Wrap>
         </ImageContainer>
       </ImagePol>
+      <Container>
+        <Title content={"POLARIZED"} fontSize={"80px"} />
+        <Flex>
+          <Subtitle className="signature">Your style is a mood,</Subtitle>
+          <span>_______________________________</span>
+        </Flex>
+
+        <Flex>
+          <span>_____________________</span>
+
+          <Subtitle className="signature">
+            And we're here for every swing.
+          </Subtitle>
+        </Flex>
+        <Paragraph
+          content={`Playful or Classic? Why Not Both?** Our collection is all about
+          options. From *bold and playful* pieces to *sleek and timeless
+          basics*, we’ve got something for every vibe. Because why choose when
+          you can have it all?`}
+        />
+        <Linked link={"/shop"} name={"Shop Now "} />
+      </Container>
     </HeroContainer>
   );
 };

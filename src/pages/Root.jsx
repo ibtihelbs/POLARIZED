@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 const Root = () => {
   return (
     <>
+      <div className="noise"></div>
+
       <Navbar />
       <Outlet />
       <Footer />

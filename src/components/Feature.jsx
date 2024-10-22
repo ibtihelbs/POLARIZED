@@ -13,21 +13,29 @@ const Frame = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-row: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 3rem;
   width: 80%;
-
-  padding: 1rem;
+  border-radius: 15px;
+  background-color: var(--bg-color);
+  padding: 3rem;
 `;
-const Feature = ({ title, img, paragraph, order, bg }) => {
+const Feature = ({ title, img, paragraph, order, bg, color }) => {
   return (
-    <Section bg={bg}>
+    <Section style={{ background: bg }}>
       <Frame>
         <ImagePol>
           <Image src={img} alt={title} />
         </ImagePol>
 
-        <div style={{ gridColumn: "span 2", order: order }}>
-          <Title content={title} col={"span 2"} />
+        <div
+          style={{
+            gridColumn: "span 2",
+            order: order,
+            display: "grid",
+            gap: "1rem",
+          }}
+        >
+          <Title content={title} col={"span 2"} color={color} />
 
           <Paragraph content={paragraph} />
           <Linked name={"Shop Now"} link={"/productlist"} />
