@@ -79,7 +79,6 @@ const SubTitle = ({ content, align, col }) => {
   );
 };
 const TextStripe = ({ children }) => {
-  console.log(children); 
   return <StripeStyled>{children}</StripeStyled>;
 };
 export { Paragraph, Title, SubTitle, RenderedTitle, TextStripe };

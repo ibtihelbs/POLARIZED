@@ -6,7 +6,6 @@ export const loginApi = async (dispatch, user) => {
   dispatch(loginStart());
   try {
     const res = await PUBLIC_REQUEST.post("user/auth/login", user);
-    console.log(res);
     dispatch(loginSucess(res.data));
   } catch (error) {
     dispatch(loginFailure());
@@ -17,7 +16,6 @@ export const register = async (dispatch, user) => {
   try {
     const res = await PUBLIC_REQUEST.post("user/auth/register", user);
 
-    console.log(res);
     dispatch(addUserSuccess(res.data));
   } catch (error) {
     dispatch(addUserFailure());
@@ -29,8 +27,7 @@ export const order = async (dispatch, order) => {
   try {
     const formattedOrder = order.formattedOrder;
 
-    const res = await userRequest.post("orders", formattedOrder);
-    console.log(formattedOrder);
+    await userRequest.post("orders", formattedOrder);
     dispatch(addOrder(order));
   } catch (error) {
     dispatch(addOrderFailure());

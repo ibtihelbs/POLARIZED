@@ -12,7 +12,6 @@ import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
 import Checkout from "./pages/Checkout";
 import Account from "./pages/Account";
-import ProductFetching from "./productFetching";
 import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import GlobalStyles from "./components/core/GlobalStyles";
@@ -58,10 +57,6 @@ const router = createBrowserRouter([
       {
         path: "account",
         element: <Account />,
-      },
-      {
-        path: "mount",
-        element: <ProductFetching />,
       },
     ],
   },

@@ -68,7 +68,6 @@ const Register = () => {
   const handleCreate = (e) => {
     e.preventDefault();
     register(dispatch, input);
-    console.log(input);
     navigate("/login", { replace: true });
   };
 

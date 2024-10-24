@@ -157,7 +157,6 @@ const ProductCard = ({ product }) => {
           <Button
             content={"add to cart"}
             onClick={() => {
-              console.log({ product, quantity: 1 });
               dispatch(addProduct({ ...product, quantity: 1 }));
             }}
           />

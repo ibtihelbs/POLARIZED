@@ -53,7 +53,6 @@ const Products = ({ sort, filter, categ }) => {
     .pathname.toLocaleLowerCase()
     .includes("/productlist");
 
-  console.log(location, useLocation().pathname);
   // Fetch products based on category
   useEffect(() => {
     const getProducts = async () => {
@@ -82,7 +81,6 @@ const Products = ({ sort, filter, categ }) => {
           )
         );
       } else {
-        console.log(categ, products);
         setFilteredProducts(products);
       }
     };

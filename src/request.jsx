@@ -5,7 +5,6 @@ const BASE_URL = "https://polarized-store-api.onrender.com/api/";
 const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
 const currentUser = user && JSON.parse(user).currentUser;
 const TOKEN = currentUser?.accessToken;
-console.log(TOKEN);
 export const PUBLIC_REQUEST = axios.create({
   baseURL: BASE_URL,
 });
