@@ -11,11 +11,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: var(--dark-grey);
   font-family: "Poppins", sans-serif;
 }
 body {
   overflow-x: hidden;
+  color: var(--dark-grey);
 }
 img {
   max-width: 100%;
@@ -29,6 +29,7 @@ input::placeholder {
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
 body {
   background-color: var(--bg-color);

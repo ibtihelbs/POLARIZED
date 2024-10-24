@@ -1,3 +1,4 @@
+import { Children } from "react";
 import styled from "styled-components";
 
 const StyledParagraph = styled.p`
@@ -8,6 +9,7 @@ const StyledParagraph = styled.p`
   line-height: 25px;
   font-size: 16px;
   letter-spacing: 1px;
+  font-weight: ${(props) => (props.bold ? props.bold : "400")};
 `;
 const StyledTitle = styled.h1`
   align-text: ${(props) => (props.align ? props.align : "left")};
@@ -31,9 +33,18 @@ const StyledSubsTitle = styled.h2`
   font-size: 20px;
   letter-spacing: -1px;
 `;
-const Paragraph = ({ content, align, col }) => {
+const StripeStyled = styled.div`
+  background-color: var(--neon);
+  width: 100%;
+  overflow: hidden;
+  z-index: 25;
+  white-space: nowrap;
+  transform: ${(props) => props.theme?.transform || "translateX(0)"};
+  top: ${(props) => props.theme?.top || "0"};
+`;
+const Paragraph = ({ content, align, col, bold }) => {
   return (
-    <StyledParagraph align={align} col={col}>
+    <StyledParagraph align={align} col={col} bold={bold}>
       {" "}
       {content}{" "}
     </StyledParagraph>
@@ -55,7 +66,6 @@ const RenderedTitle = ({ content, align, col, fontSize, color }) => {
       col={col}
       fontSize={fontSize}
       color={color}
-      
       dangerouslySetInnerHTML={{ __html: content }}
     />
   );
@@ -68,4 +78,8 @@ const SubTitle = ({ content, align, col }) => {
     </StyledSubsTitle>
   );
 };
-export { Paragraph, Title, SubTitle, RenderedTitle };
+const TextStripe = ({ children }) => {
+  console.log(children); 
+  return <StripeStyled>{children}</StripeStyled>;
+};
+export { Paragraph, Title, SubTitle, RenderedTitle, TextStripe };

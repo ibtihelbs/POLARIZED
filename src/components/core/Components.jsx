@@ -29,14 +29,13 @@ const StyledButton = styled.button`
 
 const StyledLink = styled(Link)`
   padding: 1rem 2rem;
-  float: right;
   border: 2px solid var(--dark-grey);
   box-shadow: 5px 5px 0px var(--dark-grey);
   border-radius: 999px;
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   font-weight: bold;
   background-color: ${(props) => props.bgc || "var(--neon)"};
-  place-self: end;
+  place-self: ${(props) => (props.self ? props.self : "start")};
   &:hover {
     background-color: ${(props) =>
       props.bgc ? props.color : "var(--dark-grey)"};
@@ -69,9 +68,9 @@ const Image = ({ src, alt }) => {
   return <ImageStyled src={src} alt={alt} />;
 };
 
-const Linked = ({ link, name, bgc, color }) => {
+const Linked = ({ link, name, bgc, color, self }) => {
   return (
-    <StyledLink to={link} bgc={bgc} color={color}>
+    <StyledLink to={link} bgc={bgc} color={color} self={self}>
       {name}
     </StyledLink>
   );

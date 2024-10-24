@@ -34,7 +34,10 @@ const Checkout = () => {
       [e.target.name]: e.target.value,
     }));
   };
-
+  const getProd = products.map((v) => ({
+    productId: v._id,
+    quantity,
+  }));
   const prodId = products.map((v) => ({
     productId: v._id,
     img: v.img,
@@ -51,6 +54,12 @@ const Checkout = () => {
       userId: { ...contact, ...currentUser },
       product: { prodId, total, date: new Date().toISOString() }, // Save the current date
       amount: quantity,
+      formattedOrder: {
+        userId: currentUser._id,
+        ...contact,
+        product: getProd,
+        amount: total,
+      },
     };
 
     try {

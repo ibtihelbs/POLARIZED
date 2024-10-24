@@ -131,7 +131,7 @@ const ProductCard = ({ product }) => {
   return (
     <CardContainer>
       <Link to={`../Product/${_id}`}>
-        <Image src={img} alt={title} />
+        <Image src={img} alt={title} loading="lazy" />
       </Link>
       <Content>
         <Title>{title}</Title>

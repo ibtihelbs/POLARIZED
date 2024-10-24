@@ -4,6 +4,7 @@ import HeroSection from "../components/HeroSection";
 import transition from "../transition";
 import About from "../components/About";
 import Feature from "../components/Feature";
+import { Title, TextStripe } from "../components/core/Text";
 const productCopy = [
   {
     product: "100% Leather Products",
@@ -16,7 +17,7 @@ const productCopy = [
     product: "Light Blue Men's Button-Up",
     copy: "Casual but polished? Nailed it. Our light blue men’s button-up is that perfect 'every occasion' piece, whether you're feeling laid-back or dialed-in. It's as versatile as your mood — wear it your way and own the day.",
     img: "/buttonup.jpg", // Example image path
-    bg: "inherit",
+    bg: "lightblue",
     color: "inherit",
   },
   {
@@ -27,11 +28,23 @@ const productCopy = [
     color: "inherit",
   },
 ];
+import { InfiniteSlider } from "../components/InfiniteSlider";
 
 const HomeComponant = () => {
   return (
     <>
       <HeroSection />
+      <TextStripe>
+        <InfiniteSlider>
+          <Title
+            content={"NEW NEW NEW - NEW NEW NEW - NEW NEW NEW - "}
+            align={"center"}
+          />
+        </InfiniteSlider>
+      </TextStripe>
+
+      <Products />
+
       <About />
       {productCopy.map((v, index) => {
         const { product, copy, img, bg, color } = v;
@@ -47,7 +60,6 @@ const HomeComponant = () => {
           />
         );
       })}
-      <Products />
       <Newsletter />
     </>
   );

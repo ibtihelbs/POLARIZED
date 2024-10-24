@@ -2,6 +2,7 @@ import { useMotionValue, animate, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import useMeasure from "../utils/useMeasure";
 import styled from "styled-components";
+import { Title } from "./core/Text";
 const Container = styled.div`
   overflow: hidden;
 `;
@@ -76,7 +77,7 @@ export function InfiniteSlider({
         },
       }
     : {};
-
+  console.log(children);
   return (
     <Container>
       <motion.div
@@ -91,8 +92,8 @@ export function InfiniteSlider({
         ref={ref}
         {...hoverProps}
       >
-        <h1>{children.props.children}</h1>
-        <h1>{children.props.children}</h1>
+        <Title content={children.props.children || children.props.content} />
+        <Title content={children.props.children || children.props.content} />
       </motion.div>
     </Container>
   );

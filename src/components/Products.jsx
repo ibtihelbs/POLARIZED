@@ -49,8 +49,11 @@ const Products = ({ sort, filter, categ }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
-  const location = useLocation().pathname.includes("productlist");
+  const location = useLocation()
+    .pathname.toLocaleLowerCase()
+    .includes("/productlist");
 
+  console.log(location, useLocation().pathname);
   // Fetch products based on category
   useEffect(() => {
     const getProducts = async () => {
@@ -79,6 +82,7 @@ const Products = ({ sort, filter, categ }) => {
           )
         );
       } else {
+        console.log(categ, products);
         setFilteredProducts(products);
       }
     };
@@ -110,18 +114,22 @@ const Products = ({ sort, filter, categ }) => {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const displayedProducts = !location
+  const displayedProducts = location
     ? filteredProducts.slice(startIndex, endIndex)
     : filteredProducts.slice(0, 3);
 
   return (
     <section>
       <Container>
-        {displayedProducts.map((item) => (
-          <ProductCard product={item} key={item._id} />
-        ))}
+        {displayedProducts ? (
+          displayedProducts.map((item) => (
+            <ProductCard product={item} key={item._id} />
+          ))
+        ) : (
+          <h1> Loading ... </h1>
+        )}
       </Container>
-      {totalPages > 1 && (
+      {location && (
         <PaginationBar
           totalPages={totalPages}
           currentPage={currentPage}

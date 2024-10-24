@@ -165,7 +165,7 @@ const Product = () => {
           <Container>
             <FilterTitle>Tags </FilterTitle>
             <FlexContainer>
-              {prod?.categories.map((v, index) => (
+              {prod?.tags.map((v, index) => (
                 <Tags key={index} to={`../productlist/${v}`}>
                   {" "}
                   {v}{" "}

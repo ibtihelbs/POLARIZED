@@ -27,9 +27,11 @@ export const register = async (dispatch, user) => {
 export const order = async (dispatch, order) => {
   dispatch(addOrderStart());
   try {
-    const res = userRequest.post("orders", order);
-    console.log(order);
-    dispatch(addOrder(res.data));
+    const formattedOrder = order.formattedOrder;
+
+    const res = await userRequest.post("orders", formattedOrder);
+    console.log(formattedOrder);
+    dispatch(addOrder(order));
   } catch (error) {
     dispatch(addOrderFailure());
   }
