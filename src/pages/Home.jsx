@@ -20,15 +20,9 @@ const productCopy = [
     bg: "lightblue",
     color: "inherit",
   },
-  {
-    product: "Dopamine Décor",
-    copy: "Bring on the good vibes with our Dopamine Décor! Bold colors and playful designs that are all about boosting your mood and your space. Because who says your home can’t be as unique and vibrant as your style?",
-    img: "/deco.jpg", // Example image path
-    bg: "inherit",
-    color: "inherit",
-  },
 ];
 import { InfiniteSlider } from "../components/InfiniteSlider";
+import Dopamin from "../components/Dopamin";
 
 const HomeComponant = () => {
   return (
@@ -46,6 +40,7 @@ const HomeComponant = () => {
       <Products />
 
       <About />
+      <Dopamin />
       {productCopy.map((v, index) => {
         const { product, copy, img, bg, color } = v;
         return (

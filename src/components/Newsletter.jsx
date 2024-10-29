@@ -2,16 +2,13 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 import { IoMdMail } from "react-icons/io";
 import { Button, TextInput } from "./core/Components";
+import { Title } from "./core/Text";
 const Container = styled.div`
   height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`;
-const Title = styled.h1`
-  font-size: 70px;
-  margin-bottom: 20px;
 `;
 
 const Desc = styled.div`
@@ -43,7 +40,7 @@ const Newsletter = () => {
           height: "5px",
         }}
       />
-      <Title>Newsletter</Title>
+      <Title content={"Newsletter"} />
       <Desc>Get timely updates from your favorite products.</Desc>
       <InputContainer>
         <TextInput placeholder="Your email" />

@@ -5,7 +5,8 @@ const PolarizeImg = styled.div`
   background-color: white;
   display: inline-block;
   border-radius: 30px;
-  border: solid var(--dark-grey) 2px;
+  border: var(--border);
+  box-shadow: var(--shadow);
   transform: rotate(-10deg);
   font-family: var(--italic) !important;
 `;

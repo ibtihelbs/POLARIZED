@@ -2,6 +2,7 @@ import ImagePol from "./core/ImagePol";
 import { Paragraph, Title } from "./core/Text";
 import styled from "styled-components";
 import { Image, Linked } from "./core/Components";
+import { mobile } from "../responsive";
 const Section = styled.section`
   min-height: 100vh;
   display: flex;
@@ -18,6 +19,7 @@ const Frame = styled.div`
   border-radius: 15px;
   background-color: var(--bg-color);
   padding: 3rem;
+  ${mobile({ gridTemplateColumns: "1fr" })}
 `;
 const Feature = ({ title, img, paragraph, order, bg, color }) => {
   return (

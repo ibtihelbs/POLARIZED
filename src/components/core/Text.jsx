@@ -1,4 +1,4 @@
-import { Children } from "react";
+import { mobile } from "../../responsive";
 import styled from "styled-components";
 
 const StyledParagraph = styled.p`
@@ -25,6 +25,12 @@ const StyledTitle = styled.h1`
     line-height: 100%;
     -webkit-text-stroke: 2px var(--bg-color);
   }
+  ${mobile({
+    fontSize: (props) =>
+      props.fontSize
+        ? parseInt(props.fontSize.replace("px", "")) / 2 + "px"
+        : "48px",
+  })}
 `;
 const StyledSubsTitle = styled.h2`
   align-text: ${(props) => (props.align ? props.align : "left")};
