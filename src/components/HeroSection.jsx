@@ -4,6 +4,7 @@ import { InfiniteSlider } from "./InfiniteSlider";
 import ImagePol from "./core/ImagePol";
 import { Paragraph, Title } from "./core/Text";
 import { Linked } from "./core/Components";
+import { mobile } from "../responsive";
 const HeroContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -28,6 +29,7 @@ const Container = styled.div`
   flex-direction: column;
   gap: 1rem;
   align-items: center;
+  ${mobile({ width: "100%" })}
 `;
 const theme = {
   index: 20,

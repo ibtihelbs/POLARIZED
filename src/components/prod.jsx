@@ -82,6 +82,10 @@ const Tags = styled(Link)`
   border-radius: 999px;
   border: 1px solid var(--dark-grey);
   padding: 2px 4px;
+  max-width: 80px; /* Set a max-width to control tag size */
+  overflow: hidden; /* Hide overflowed text */
+  white-space: nowrap; /* Prevent text from wrapping */
+  text-overflow: ellipsis; /* Add ellipsis for overflowed text */
 `;
 
 const FlexContainer = styled.div`
@@ -139,7 +143,7 @@ const ProductCard = ({ product }) => {
         <ProductInfo>
           <InfoGrid>
             <FlexContainer>
-              {tags?.map((v, index) => (
+              {tags?.slice(0, 3).map((v, index) => (
                 <Tags key={index} to={`../productlist/${v}`}>
                   {v}
                 </Tags>
