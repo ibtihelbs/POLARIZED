@@ -1,16 +1,18 @@
 @font-face {
-  font-family: "Modak";
-  src: url(./assets/fonts/hey-louie.regular.otf);
+  font-family: "DM";
+  src: url(./assets/fonts/dmserifdisplay-regular-webfont.woff2);
 }
-
 @font-face {
-  font-family: "MsSaint";
-  src: url(./assets/fonts/Scriptinapro-71lE.otf);
+  font-family: "DM-i";
+  src: url(./assets/fonts/dmserifdisplay-italic-webfont.woff2);
+}
+@font-face {
+  font-family: "poppins";
+  src: url(./assets/fonts/poppins-regular-webfont.woff2);
 }
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
 body {
@@ -19,6 +21,7 @@ body {
 }
 img {
   max-width: 100%;
+  max-height: 100%;
 }
 ul {
   list-style: none;
@@ -36,15 +39,14 @@ body {
 }
 h1,
 title {
-  font-family: "Modak", sans-serif;
+  font-family: "DM", sans-serif;
 }
 nav h3 {
-  font-family: "Modak", sans-serif;
+  font-family: "DM", sans-serif;
 }
 
 .signature {
-  font-family: "MsSaint", cursive;
-  font-size: 40px;
+  font-family: "DM-i", cursive;
 }
 button {
   background-color: transparent;
@@ -55,7 +57,7 @@ button:hover {
   cursor: pointer;
 }
 .noise::before {
-  background: url("https://images.unsplash.com/photo-1528459105426-b9548367069b?q=80&w=1328&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background: url("https://i.gifer.com/Iba7.gif");
   content: "";
   height: 100vh;
   background-size: cover;

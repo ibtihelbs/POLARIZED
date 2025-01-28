@@ -3,20 +3,33 @@ import { Link } from "react-router-dom";
 
 // Styled Components
 const ImageStyled = styled.img`
+  max-width: 100%;
+  max-height: 100%;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 30px;
   border: 2px solid var(--dark-grey);
 `;
-
+const StyledContainer = styled.div`
+  display: grid;
+  gap: ${(props) => (props.gap ? props.gap : "24px")};
+  order: ${(props) => (props.order ? props.order : "initial")};
+  justify-items: ${(props) => (props.justity ? props.justity : "start")};
+`;
 const StyledButton = styled.button`
   padding: 1rem 2rem;
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-  border: 2px solid var(--dark-grey);
+  border: 2px solid ${(props) => props.color || "var(--dark-grey)"};
   border-radius: 999px;
   background-color: ${(props) => props.bgc || "var(--neon)"};
-  box-shadow: 5px 5px 0px var(--dark-grey);
+  box-shadow: 5px 5px 0px ${(props) => props.color || "var(--dark-grey)"};
   text-transform: capitalize;
-
+  font-weight: bold;
+  font-weight: bold;
+  letter-spacing: 5%;
+  font-size: 24px;
+  color: ${(props) => props.color || "var(--dark-grey)"};
   &:hover {
     background-color: ${(props) =>
       props.bgc ? props.color : "var(--dark-grey)"};
@@ -26,7 +39,17 @@ const StyledButton = styled.button`
     border-color: ${(props) => (props.bgc ? props.bgc : "var(--neon)")};
   }
 `;
-
+const SectionStyled = styled.section`
+  background-color: ${(props) => (props ? props.bg : "var(--dark-grey)")};
+  color: ${(props) => (props.color ? props.color : "var(--dark-grey)")};
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 5rem;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+`;
 const StyledLink = styled(Link)`
   padding: 1rem 2rem;
   border: 2px solid var(--dark-grey);
@@ -34,6 +57,8 @@ const StyledLink = styled(Link)`
   border-radius: 999px;
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   font-weight: bold;
+  letter-spacing: 5%;
+  font-size: 24px;
   background-color: ${(props) => props.bgc || "var(--neon)"};
   place-self: ${(props) => (props.self ? props.self : "start")};
   &:hover {
@@ -83,7 +108,13 @@ const Button = ({ type = "button", content, color, bgc, onClick }) => {
     </StyledButton>
   );
 };
-
+const Container = ({ gap, children, justity, order }) => {
+  return (
+    <StyledContainer gap={gap} order={order}>
+      {children}
+    </StyledContainer>
+  );
+};
 // Extended Inputs with onChange support
 const TextInput = styled(StyledInput).attrs(({ onChange }) => ({
   type: "text",
@@ -100,6 +131,17 @@ const Label = styled.label`
   margin-bottom: ${(props) => props.marginBottom || "5px"};
   color: ${(props) => props.color || "var(--dark-grey)"};
 `;
-
+const Section = ({ children }) => {
+  return <SectionStyled>{children}</SectionStyled>;
+};
 // Export components
-export { Image, Linked, Button, TextInput, Label, PasswordInput };
+export {
+  Image,
+  Linked,
+  Button,
+  Container,
+  Section,
+  TextInput,
+  Label,
+  PasswordInput,
+};

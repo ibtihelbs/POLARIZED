@@ -15,8 +15,15 @@ const NavbarContainer = styled.nav`
   align-items: center;
   height: 80px;
   padding: 0 3rem;
-
-  position: relative;
+  width: 80%;
+  position: absolute;
+  background-color: var(--neon);
+  margin-top: 1rem;
+  border-radius: 999px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 5px 5px 0px var(--dark-grey);
+  border: 2px solid var(--dark-grey);
 
   ${mobile({ padding: "0 1rem" })};
 `;

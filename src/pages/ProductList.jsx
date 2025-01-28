@@ -4,7 +4,9 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import transition from "../transition";
-const Container = styled.div``;
+const Container = styled.div`
+  padding-top: 10rem;
+ `;
 
 const Title = styled.h1`
   margin: 20px;
