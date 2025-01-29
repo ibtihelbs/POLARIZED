@@ -25,7 +25,7 @@ const NavbarContainer = styled.nav`
   box-shadow: 5px 5px 0px var(--dark-grey);
   border: 2px solid var(--dark-grey);
 
-  ${mobile({ padding: "0 1rem" })};
+  ${mobile({ padding: "0 1rem", height: "40px" })};
 `;
 
 const Form = styled.form`
@@ -90,7 +90,8 @@ const Navbar = () => {
   };
   return (
     <NavbarContainer>
-      <Form className="searchBar">
+      {/**
+       * <Form className="searchBar">
         <SearchButton type="submit" onClick={handleSearch}>
           <FaSearch className="icon" />
         </SearchButton>
@@ -101,6 +102,7 @@ const Navbar = () => {
           onChange={(e) => setSearched(e.target.value)}
         />
       </Form>
+       */}
       <StyledLink to={"/"}>
         <h3>polarized</h3>
       </StyledLink>

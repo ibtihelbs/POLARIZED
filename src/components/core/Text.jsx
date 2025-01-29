@@ -1,11 +1,11 @@
-import { mobile } from "../../responsive";
+import { mobile, tablet } from "../../responsive";
 import styled from "styled-components";
 
 // Styled Components
 const StyledParagraph = styled.p`
   text-align: ${(props) => (props.align ? props.align : "left")};
   grid-column: ${(props) => (props.col ? props.col : "1 / 2")};
-  max-width: 560px;
+  max-width: 80%;
   text-indent: 1rem;
   line-height: 125%;
   font-size: ${(props) => (props.fontSize ? props.fontSize : "20px")};
@@ -16,6 +16,13 @@ const StyledParagraph = styled.p`
   -webkit-text-stroke: ${(props) =>
     props.stroke ? props.stroke : "transparent"};
   text-stroke: ${(props) => (props.stroke ? props.stroke : "transparent")};
+  ${tablet({
+    maxWidth: "100%",
+    fontSize: "20px",
+  })}
+  ${mobile({
+    fontSize: "16px",
+  })}
 `;
 
 const StyledTitle = styled.h1`
@@ -39,6 +46,7 @@ const StyledTitle = styled.h1`
     font-weight: bold;
     font-family: inherit;
     color: var(--neon);
+    font-size: inherit;
     line-height: 100%;
     -webkit-text-stroke: 2px var(--bg-color);
   }
@@ -46,8 +54,11 @@ const StyledTitle = styled.h1`
   ${mobile({
     fontSize: (props) =>
       props.fontSize
-        ? parseInt(props.fontSize.replace("px", "")) / 2 + "px"
+        ? parseInt(props.fontSize.replace("px", "")) / 2.8 + "px"
         : "48px",
+  })}
+  ${tablet({
+    maxWidth: "100%",
   })}
 `;
 
@@ -57,8 +68,11 @@ const StyledSubsTitle = styled.h2`
   color: ${(props) => (props.color ? props.color : "inherit")};
   line-height: 90%;
   font-size: ${(props) => (props.fontSize ? props.fontSize : "24px")};
-
   letter-spacing: 1%;
+  ${tablet({
+    width: "100%",
+    fontSize: "12px",
+  })}
 `;
 
 const StripeStyled = styled.div`
@@ -70,6 +84,7 @@ const StripeStyled = styled.div`
   transform: ${(props) => props.transform || "translateX(0)"};
   position: ${(props) => props.position || "static"};
   top: ${(props) => props.top || "0"};
+  ${mobile({ display: "none" })}
 `;
 
 // Functional Components

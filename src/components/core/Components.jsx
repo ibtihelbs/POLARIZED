@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import { mobile, tablet } from "../../responsive";
 // Styled Components
 const ImageStyled = styled.img`
   max-width: 100%;
@@ -16,6 +16,12 @@ const StyledContainer = styled.div`
   gap: ${(props) => (props.gap ? props.gap : "24px")};
   order: ${(props) => (props.order ? props.order : "initial")};
   justify-items: ${(props) => (props.justity ? props.justity : "start")};
+  ${tablet({
+    gap: (props) =>
+      props.fontSize
+        ? parseInt(props.fontSize.replace("px", "")) / 4 + "px"
+        : "8px",
+  })}
 `;
 const StyledButton = styled.button`
   padding: 1rem 2rem;
@@ -26,7 +32,7 @@ const StyledButton = styled.button`
   box-shadow: 5px 5px 0px ${(props) => props.color || "var(--dark-grey)"};
   text-transform: capitalize;
   font-weight: bold;
-  font-weight: bold;
+
   letter-spacing: 5%;
   font-size: 24px;
   color: ${(props) => props.color || "var(--dark-grey)"};
@@ -38,6 +44,10 @@ const StyledButton = styled.button`
     color: ${(props) => (props.bgc ? props.bgc : "var(--neon)")};
     border-color: ${(props) => (props.bgc ? props.bgc : "var(--neon)")};
   }
+  ${mobile({
+    fontSize: "12px",
+    padding: ".5rem 1rem",
+  })}
 `;
 const SectionStyled = styled.section`
   background-color: ${(props) => (props ? props.bg : "var(--dark-grey)")};
@@ -49,6 +59,7 @@ const SectionStyled = styled.section`
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  ${tablet({ padding: 0, paddingTop: "1rem" })};
 `;
 const StyledLink = styled(Link)`
   padding: 1rem 2rem;
@@ -69,6 +80,10 @@ const StyledLink = styled(Link)`
     color: ${(props) => (props.bgc ? props.bgc : "var(--neon)")};
     border-color: ${(props) => (props.bgc ? props.bgc : "var(--neon)")};
   }
+  ${mobile({
+    fontSize: "12px",
+    padding: ".5rem 1rem",
+  })}
 `;
 
 const StyledInput = styled.input`

@@ -9,7 +9,7 @@ const Container = styled.div`
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  ${tablet({ gridTemplateColumns: "1fr" })}
+  ${tablet({ gridTemplateColumns: "1fr", padding: "1rem" })}
 `;
 
 const PaginationContainer = styled.div`

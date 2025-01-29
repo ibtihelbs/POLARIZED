@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { RenderedTitle } from "./core/Text";
 import { motion, useScroll, useTransform } from "framer-motion";
-
+import { mobile } from "../responsive";
 const Section = styled(motion.section)`
   background-color: var(--dark-grey);
   height: 100vh;
@@ -10,6 +10,9 @@ const Section = styled(motion.section)`
   align-items: center;
   justify-content: center;
   color: var(--bg-color);
+  ${mobile({
+    padding: "1rem",
+  })}
 `;
 
 const About = () => {

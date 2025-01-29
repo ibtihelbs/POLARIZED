@@ -3,12 +3,12 @@ import Newsletter from "../components/Newsletter";
 import HeroSection from "../components/HeroSection";
 import transition from "../transition";
 import About from "../components/About";
-import NewItem from "./NewItem";
+import NewItem from "../components/NewItem";
 import styled from "styled-components";
 import { Title, Paragraph } from "../components/core/Text";
 import { Section } from "../components/core/Components";
-import { motion, useScroll } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+
 const productCopy = [
   {
     title: "Stomp in Style",
@@ -47,16 +47,10 @@ const productCopy = [
 ];
 
 const HomeComponant = () => {
-  const container = useRef(null);
   const Page = styled(motion.section)`
-    height: 300vh;
     position: relative;
   `;
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end end"],
-  });
-  console.log(scrollYProgress);
+
   return (
     <>
       <HeroSection />
@@ -76,16 +70,9 @@ const HomeComponant = () => {
         <Products />
       </Section>
 
-      <Page ref={container} as={motion.section}>
+      <Page as={motion.section}>
         {productCopy.map((v, index) => {
-          return (
-            <NewItem
-              index={index}
-              key={index}
-              product={v}
-              scrollYProgress={scrollYProgress}
-            />
-          );
+          return <NewItem index={index} key={index} product={v} />;
         })}
       </Page>
       <Newsletter />

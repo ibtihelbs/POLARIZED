@@ -78,7 +78,7 @@ const StarIcon = styled.span`
 `;
 
 const Tags = styled(Link)`
-  font-size: 12px;
+  font-size: 8px;
   border-radius: 999px;
   border: 1px solid var(--dark-grey);
   padding: 2px 4px;
@@ -91,6 +91,7 @@ const Tags = styled(Link)`
 const FlexContainer = styled.div`
   display: flex;
   gap: 4px;
+  flex-wrap: wrap;
 `;
 
 const ProductInfo = styled.div`
