@@ -14,6 +14,7 @@ const HeroContainer = styled(motion.div)`
   background-image: url(./images/hero.png);
   background-size: cover;
   min-height: 100vh;
+  ${mobile({ backgroundImage: "url(./images/hero-mobile.png)" })}
 `;
 
 const Image = styled.img`
