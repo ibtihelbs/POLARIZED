@@ -32,27 +32,20 @@ const NewItem = ({ product, index }) => {
 
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start start", "end end"],
+    offset: ["start center", "end end"],
   });
-  useEffect(() => {
-    console.log(scrollYProgress);
-  }, [scrollYProgress.hasAnimated]);
 
   const { title, copy, img, bg, color, more } = product;
-  const scaleArr = index % 2 == 0 ? [1, 0.5] : [0.5, 1.1];
-  const rotateArr = index % 2 == 0 ? [0, -5] : [-5, 0];
-  const borderRadiusArr = index % 2 == 0 ? [50, 0] : [0, 50];
-  const final = index + 1 / 4;
-  const start = Math.abs(final - 1);
-
-  const scale = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const rotate = useTransform(scrollYProgress, [0, 1], rotateArr);
-  const borderRadius = useTransform(scrollYProgress, [0, 1], borderRadiusArr);
+  const rotateArr = index % 2 == 0 ? [0, 15, 0] : [0, -15, 0];
+  console.log(rotateArr, index % 2 == 0, index);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
+  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], rotateArr);
+  const borderRadius = useTransform(scrollYProgress, [0, 0.5, 1], [0, 50, 0]);
 
   return (
     <Section
       key={index}
-      style={(borderRadius, rotate, scale)}
+      style={{ borderRadius, rotate, scale }}
       as={motion.section}
       bg={bg}
       more={more}
