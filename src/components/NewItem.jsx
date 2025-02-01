@@ -4,7 +4,7 @@ import { Button, Image, Container } from "./core/Components";
 import styled from "styled-components";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { mobile } from "../responsive";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 const Section = styled(motion.section)`
   background-color: ${(props) => (props ? props.bg : "var(--dark-grey)")};
   color: ${(props) => (props.color ? props.color : "var(--dark-grey)")};
@@ -15,7 +15,7 @@ const Section = styled(motion.section)`
   padding: 5rem;
   position: sticky;
   top: 0;
-  gap: 3rem;
+  gap: 2rem;
   ${mobile({
     gridTemplateColumns: "1fr",
     gap: "1rem",
@@ -36,11 +36,23 @@ const NewItem = ({ product, index }) => {
   });
 
   const { title, copy, img, bg, color, more } = product;
-  const rotateArr = index % 2 == 0 ? [0, 15, 0] : [0, -15, 0];
+  const rotateArr = index % 2 == 0 ? [15, 0] : [-15, 0];
   console.log(rotateArr, index % 2 == 0, index);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
-  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], rotateArr);
-  const borderRadius = useTransform(scrollYProgress, [0, 0.5, 1], [0, 50, 0]);
+  const scale = useTransform(
+    scrollYProgress,
+    [index * 0.25, (index + 1) * 0.25],
+    [0.5, 1]
+  );
+  const rotate = useTransform(
+    scrollYProgress,
+    [index * 0.25, (index + 1) * 0.25],
+    rotateArr
+  );
+  const borderRadius = useTransform(
+    scrollYProgress,
+    [index * 0.25, (index + 1) * 0.25],
+    [50, 0]
+  );
 
   return (
     <Section
@@ -62,12 +74,12 @@ const NewItem = ({ product, index }) => {
 
       <Container>
         <Title fontSize={"100px"} content={title} color={color} />
-        <Paragraph content={copy} color={color} fontSize={"24px"} />
+        <Paragraph content={copy} color={color} fontSize={"20px"} />
         <Container gap={"12px"}>
           {more?.map((v, index) => (
             <SubTitle
               key={index}
-              fontSize={"24px"}
+              fontSize={"20px"}
               color={"var(--bg-color)"}
               content={v}
             />

@@ -33,14 +33,7 @@ const InputContainer = styled.div`
 const Newsletter = () => {
   return (
     <Container>
-      <hr
-        style={{
-          backgroundColor: "var(--dark-grey)",
-          width: "100%",
-          height: "5px",
-        }}
-      />
-      <Title content={"Newsletter"} />
+      <Title content={"Newsletter"} align={"center"} />
       <Desc>Get timely updates from your favorite products.</Desc>
       <InputContainer>
         <TextInput placeholder="Your email" />

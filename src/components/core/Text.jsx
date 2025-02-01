@@ -39,7 +39,7 @@ const StyledTitle = styled.h1`
   line-height: 100%;
   letter-spacing: -10%;
   width: 100%;
-  max-width: 60%;
+  max-width: 80%;
   color: ${(props) => (props.color ? props.color : "inherit")};
 
   span {

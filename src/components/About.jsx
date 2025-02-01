@@ -23,7 +23,7 @@ const About = () => {
   return (
     <Section as={motion.section} style={{ scale, rotate, borderRadius }}>
       <RenderedTitle
-        fontSize="100px"
+        fontSize="80px"
         color="var(--bg-color)"
         content={`Each item is crafted with care, offering <span>unique</span>, <span>high-quality</span>  pieces that <span>elevate</span> your style, whether you're dressing up or keeping it casual.`}
       />
