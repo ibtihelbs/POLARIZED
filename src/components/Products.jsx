@@ -3,11 +3,13 @@ import styled from "styled-components";
 import axios from "axios";
 import ProductCard from "./prod";
 import { useLocation } from "react-router-dom";
+import { tablet } from "../responsive";
 
 const Container = styled.div`
   padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  ${tablet({ gridTemplateColumns: "1fr", padding: "1rem" })}
 `;
 
 const PaginationContainer = styled.div`
@@ -20,8 +22,9 @@ const PaginationContainer = styled.div`
 const PageButton = styled.button`
   margin: 0 5px;
   padding: 8px 12px;
-  background-color: ${(props) => (props.active ? "#1d4ed8" : "#f9ffb9")};
-  color: ${(props) => (props.active ? "#f9ffb9" : "#1d4ed8")};
+  background-color: ${(props) =>
+    props.active ? "var(--dark-grey)" : "#f9ffb9"};
+  color: ${(props) => (props.active ? "#f9ffb9" : "var(--dark-grey)")};
   cursor: pointer;
 `;
 
@@ -43,67 +46,65 @@ const PaginationBar = ({ totalPages, currentPage, onPageChange }) => {
 
 const Products = ({ sort, filter, categ }) => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setfilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9; // Change this value based on your desired items per page
-  const location = useLocation().pathname.includes("productlist");
+  const itemsPerPage = 6;
+  const location = useLocation()
+    .pathname.toLocaleLowerCase()
+    .includes("/productlist");
 
+  // Fetch products based on category
   useEffect(() => {
     const getProducts = async () => {
       try {
         const res = await axios.get(
           categ
-            ? `https://polarized-store-api.onrender.com/api/products?categories=${categ}`
+            ? `https://polarized-store-api.onrender.com/api/products?tags=${categ}`
             : "https://polarized-store-api.onrender.com/api/products"
         );
-        if (location) {
-          setProducts(res.data);
-        } else {
-          setProducts(res.data.slice(0, itemsPerPage));
-        }
-        console.log(res.data);
+        setProducts(res.data);
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching products:", error);
       }
     };
     getProducts();
-  }, [categ]);
-  console.log(products);
+  }, [categ, location]);
+
+  // Filter products based on filter criteria
   useEffect(() => {
-    categ &&
-      setfilteredProducts(
-        products.filter((item) =>
-          Object.entries(filter).every(([key, value]) =>
-            item[key].includes(value)
+    const filterProducts = () => {
+      if (categ) {
+        setFilteredProducts(
+          products.filter(
+            (item) =>
+              item.category == categ || item.tags?.join("").includes(categ)
           )
-        )
-      );
+        );
+      } else {
+        setFilteredProducts(products);
+      }
+    };
+    filterProducts();
   }, [filter, categ, products]);
 
+  // Sort products based on criteria
   useEffect(() => {
-    if (sort === "newest") {
-      setfilteredProducts((prev) =>
-        [...prev].sort((a, b) => a.createdAt - b.createdAt)
-      );
-      setProducts((prev) =>
-        [...prev].sort((a, b) => a.createdAt - b.createdAt)
+    if (sort === "Newest") {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       );
     } else if (sort === "asc") {
-      setfilteredProducts((prev) =>
+      setFilteredProducts((prev) =>
         [...prev].sort((a, b) => a.price - b.price)
       );
-      setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
-    } else {
-      setfilteredProducts((prev) =>
-        [...prev].sort((b, a) => a.price - b.price)
+    } else if (sort === "desc") {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => b.price - a.price)
       );
-      setProducts((prev) => [...prev].sort((b, a) => a.price - b.price));
     }
   }, [sort]);
 
-  const totalPages = Math.ceil(
-    (categ ? filteredProducts.length : products.length) / itemsPerPage
-  );
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -111,18 +112,22 @@ const Products = ({ sort, filter, categ }) => {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const displayedProducts = categ
+  const displayedProducts = location
     ? filteredProducts.slice(startIndex, endIndex)
-    : products.slice(startIndex, endIndex);
+    : filteredProducts.slice(0, 3);
 
   return (
     <section>
       <Container>
-        {displayedProducts.map((item) => (
-          <ProductCard product={item} key={item._id} />
-        ))}
+        {displayedProducts ? (
+          displayedProducts.map((item) => (
+            <ProductCard product={item} key={item._id} />
+          ))
+        ) : (
+          <h1> Loading ... </h1>
+        )}
       </Container>
-      {totalPages > 1 && (
+      {location && (
         <PaginationBar
           totalPages={totalPages}
           currentPage={currentPage}

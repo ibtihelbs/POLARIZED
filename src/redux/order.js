@@ -14,9 +14,8 @@ const orderSlice = createSlice({
       state.error = false;
     },
     addOrder: (state, action) => {
-      console.log(action);
       state.isFetching = false;
-      state.productOrder.push(action.payload);
+      state.productOrder.push(action.payload.product);
       state.userId = action.payload.userId;
     },
 

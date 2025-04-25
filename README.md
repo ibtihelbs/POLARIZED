@@ -20,14 +20,11 @@ july 2023 - Present
   - Incorporating on-scroll animations
   - Adding additional features to the website and admin dashboard, including enhancing the Cart and Checkout pages.
 
-
-
 ## Upcoming Enhancements
 
 - Optimization of website performance through [Specify optimization strategies, e.g., code splitting, lazy loading].
 - Implementation of on-scroll animations to enhance user engagement and visual appeal.
 - Addition of user-friendly features to the admin dashboard for improved management and monitoring.
-- Enhancements to the Cart and Checkout pages UI for a smoother user experience.
 
 ## Technologies Used
 
@@ -36,7 +33,6 @@ july 2023 - Present
 - React.js
 - Node.js
 - Styled Components
-
 
 ## Screenshot
 

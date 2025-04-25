@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
@@ -7,16 +7,25 @@ import { useNavigate } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { logoutSuccess } from "../redux/user";
+import { useLocation } from "react-router-dom";
 const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
   padding: 0 3rem;
+  width: 80%;
+  position: absolute;
+  background-color: var(--neon);
+  margin-top: 1rem;
+  border-radius: 999px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 5px 5px 0px var(--dark-grey);
+  border: 2px solid var(--dark-grey);
 
-  position: relative;
-
-  ${mobile({ padding: "0 1rem" })};
+  ${mobile({ padding: "0 1rem", height: "40px" })};
 `;
 
 const Form = styled.form`
@@ -46,10 +55,10 @@ const Menudropdown = styled.ul`
   position: absolute;
   z-index: 10;
   top: 100%;
-  border: 1px solid #1d4ed8;
+  border: 1px solid var(--dark-grey);
   background-color: #f9ffb9;
   padding: 1rem;
-  box-shadow: 5px 5px 0px #1d4ed8;
+  box-shadow: 5px 5px 0px var(--dark-grey);
   border-radius: 1rem;
 `;
 const Li = styled.li`
@@ -59,11 +68,16 @@ const Li = styled.li`
     opacity: 0.5;
   }
 `;
-const Navbar = ({ user }) => {
+const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
+  const User = useSelector((state) => state.user.currentUser);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [searched, setSearched] = useState("");
   const [dropDown, setDropDown] = useState(false);
+  const location = useLocation();
+
   const handleSearch = (ev) => {
     ev.preventDefault();
     navigate(`productlist/${searched}`);
@@ -71,9 +85,13 @@ const Navbar = ({ user }) => {
   const handleDropDown = () => {
     setDropDown(!dropDown);
   };
+  const handleLogout = () => {
+    dispatch(logoutSuccess());
+  };
   return (
     <NavbarContainer>
-      <Form className="searchBar">
+      {/**
+       * <Form className="searchBar">
         <SearchButton type="submit" onClick={handleSearch}>
           <FaSearch className="icon" />
         </SearchButton>
@@ -84,6 +102,7 @@ const Navbar = ({ user }) => {
           onChange={(e) => setSearched(e.target.value)}
         />
       </Form>
+       */}
       <StyledLink to={"/"}>
         <h3>polarized</h3>
       </StyledLink>
@@ -91,7 +110,7 @@ const Navbar = ({ user }) => {
         <Li>
           <StyledLink to={"/ProductList"}>shop</StyledLink>
         </Li>
-        {user ? (
+        {User ? (
           <>
             <Li onClick={handleDropDown}>
               <BsFillPersonFill />
@@ -101,7 +120,7 @@ const Navbar = ({ user }) => {
                 <StyledLink to={"/Account"}>Account</StyledLink>
               </Li>
               <Li>
-                <StyledLink to={"#"}>Log out</StyledLink>
+                <StyledLink onClick={handleLogout}>Log out</StyledLink>
               </Li>
             </Menudropdown>
           </>

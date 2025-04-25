@@ -1,61 +1,116 @@
 import React from "react";
 import styled from "styled-components";
-import AnimatedWaves from "./Waves";
-
-const HeroContainer = styled.div`
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Paragraph, SubTitle, Title } from "./core/Text";
+import { Linked } from "./core/Components";
+import { mobile } from "../responsive";
+const HeroContainer = styled(motion.div)`
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  color: #0a1174;
-  font-size: 3rem;
-  padding: 2rem 3rem;
-`;
-
-const Title = styled.h1`
-  margin: 0;
-`;
-
-const Subtitle = styled.h4`
-  margin-top: -40px;
-  margin-bottom: 50px;
-  width: 600px;
-  line-height: 0.9;
-  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  background-image: url(./images/hero.png);
+  background-size: cover;
+  min-height: 100vh;
+  ${mobile({ backgroundImage: "url(./images/hero-mobile.png)" })}
 `;
 
 const Image = styled.img`
-  width: 500px;
-  height: 500px;
   object-fit: cover;
+  height: 100%;
+  width: 100%;
   border-radius: 30px;
-  border: solid 3px #1d4ed8;
-  box-shadow: 5px 5px 0px #1d4ed8;
+  border: solid 3px var(--dark-grey);
+  position: absolute;
+  z-index: ${(props) => props.theme.index};
+`;
+const Container = styled.div`
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  ${mobile({ width: "100%" })}
+`;
+const theme = {
+  index: 20,
+};
+const themeTwo = {
+  index: 50,
+};
+
+const ImageContainer = styled.div`
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 30px;
+`;
+const TextStripe = styled.div`
+  background-color: var(--neon);
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  z-index: 25;
+  white-space: nowrap;
+  transform: ${(props) => props.theme.transform};
+  top: ${(props) => props.theme.top};
 `;
 
-const AboutText = styled.h2`
-  text-align: center;
-
-  span {
-    color: #1d4ed8;
-  }
+const TextPositionOne = {
+  top: "27%",
+  transform: "rotate(5deg)",
+};
+const TextPositionTwo = {
+  top: "60%",
+  transform: "rotate(-5deg)",
+};
+const Wrap = styled.div`
+  width: 100%;
 `;
+
+const Text = styled.h1``;
 
 const HeroSection = () => {
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 0.1], [0, -5]);
+  const borderRadius = useTransform(scrollYProgress, [0, 0.1], [0, 50]);
+
+  // Debugging logs
+
+  // Add fallback values to prevent NaN
+  const safeRotate = isNaN(rotate.get()) ? 0 : rotate.get();
+  const safeBorderRadius = isNaN(borderRadius.get()) ? 0 : borderRadius.get();
+
   return (
-    <HeroContainer>
-      <Title>polarized</Title>
-      <Subtitle>we are where for your mood swings</Subtitle>
-      <AnimatedWaves />
-      <Image src="./bg.jpg" alt="slide" loading="lazy" />
-      <AboutText id="about">
-        Welcome to <span>POLARIZED</span> <br /> — where we're here for your
-        mood swigs!
-        <br /> Whether you're feeling bold, chill, or anything in between, our
-        pieces are your perfect companion. <br />
-        <span>Embrace the swings</span>,
-        <br /> and let us match your vibe!
-      </AboutText>
+    <HeroContainer
+      as={motion.div}
+      style={{ scale, rotate: safeRotate, borderRadius: safeBorderRadius }}
+    >
+      <Container>
+        <div>
+          <Title
+            content={"POLARIZED"}
+            fontSize={"144px"}
+            color={"var(--neon)"}
+            shadow={"5px 5px var(--dark-grey)"}
+            align={"center"}
+          />
+          <Paragraph
+            bold={"900"}
+            fontSize={"32px"}
+            color={"var(--neon)"}
+            align={"center"}
+            stroke={"var(--dark-grey) 3px"}
+            content={`STYLE FOR EVERY MOOD,`}
+          />
+        </div>
+        <Linked link={"/ProductList"} name={"Shop Now "} self={"center"} />
+      </Container>
     </HeroContainer>
   );
 };
