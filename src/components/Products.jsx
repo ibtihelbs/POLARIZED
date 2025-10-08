@@ -57,12 +57,12 @@ const Products = ({ sort, filter, categ }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(
-          categ
-            ? `https://polarized-store-api.onrender.com/api/products?tags=${categ}`
-            : "https://polarized-store-api.onrender.com/api/products"
-        );
-        setProducts(res.data);
+        const res = await axios.get("data.json");
+        categ
+          ? setProducts(
+              res.data.filter((item) => item.tag.join.includes(categ))
+            )
+          : setProducts(res.data);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
